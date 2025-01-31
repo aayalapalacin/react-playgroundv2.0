@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+<h1 align="center" style="font-weight: bold;">React Playground</h1>
+
+<p align="center">
+<a href="#tech">Technologies</a>
+<a href="#colab">Collaborators</a>
+<a href="#contribute">Contribute</a> 
+</p>
+
+
+<p align="center">A frontend developer tutorial hub built with Next.js, ShadCN, and TypeScript, offering structured, interactive guides with a clean UI and smooth transitions.</p>
+
+
+<p align="center">
+<a href="https://media.makeameme.org/created/i-am-not-4fe99635b6.jpg">🖥️ Visit this Project</a>
+</p>
+
+<h2 id="layout">🎨 Layout</h2>
+
+<p align="center">
+
+<img src="https://images.unsplash.com/photo-1516381548400-349d680edb56?q=80&w=2448&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Hopscotch" width="400px">
+</p>
+
+<h2 id="tech">💻 Technologies</h2>
+
+- Next.js 
+- ShadCN UI
+- Tailwind CSS
+- TypeScript 
+- Framer Motion 
+- Jest 
+- npm
+
+<h3>Prerequisites</h3>
+
+Before you begin, make sure you have the following installed on your machine:
+
+- Node.js 
+- npm 
+- Git 
+
+<h3>Cloning</h3>
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/taylor-allen/react-playgroundv2.0.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<h3>Starting</h3>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cd project-name
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<h2 id="colab" align="center">🤝 Collaborators</h2>
 
-## Learn More
+<p align="center">Special thank you for all people that contributed for this project.</p>
+<table align="center">
+<tr>
 
-To learn more about Next.js, take a look at the following resources:
+<td align="center">
+<a href="https://github.com/aayalapalacin">
+<img src="https://avatars.githubusercontent.com/u/95265085?v=4" width="100px;" alt="Alexander Ayala-Palacin Profile Picture"/><br>
+<sub>
+<b>Alexander Ayala-Palacin</b>
+</sub>
+</a>
+</td>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<td align="center">
+<a href="https://github.com/taylor-allen">
+<img src="https://avatars.githubusercontent.com/u/50384820?v=4" width="100px;" alt="Taylor Allen Profile Picture"/><br>
+<sub>
+<b>Taylor Allen</b>
+</sub>
+</a>
+</td>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+</tr>
+</table>
 
-## Deploy on Vercel
+<h2 id="contribute">📫 Contribute</h2>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Here's how you can contribute:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. `git clone https://github.com/taylor-allen/react-playgroundv2.0.git`
+2. `git checkout -b feature/GITHUB-USERNAME`
+3. Follow commit patterns
+4. Open a Pull Request explaining the problem solved or feature made, if exists, append screenshot of visual modifications and wait for the review!
+
+<h3>Documentations that might help</h3>
+
+[📝 How to create a Pull Request](https://www.atlassian.com/br/git/tutorials/making-a-pull-request)
+
+[💾 Commit pattern](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
