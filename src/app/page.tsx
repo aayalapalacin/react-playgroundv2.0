@@ -2,6 +2,7 @@ import React from "react";
 import { tutorialsArray } from "@/tutorials";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import TransitionCards from "@/components/transitionCards";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
           Click My ShadCN Button
         </Link>
       </Button>
+    <TransitionCards />
     </div>
   );
 }
