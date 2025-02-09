@@ -16,6 +16,7 @@ export const tutorialsArray: Tutorial[] = [
   gcloud projects create my-awesome-project
   // Or, if you prefer the UI, just click around until something works.
   `,
+  icon:"🧀",
       },
       {
         title: "Step 2: Enable Google Sign-In (Because OAuth is a Pain)",
@@ -25,6 +26,7 @@ export const tutorialsArray: Tutorial[] = [
   // In your .env file:
   REACT_APP_GOOGLE_CLIENT_ID=your-client-id-here
   `,
+  icon:"🥬",
       },
       {
         title: "Step 3: Implement It in React (Copy-Paste and Pray)",
@@ -43,6 +45,7 @@ export const tutorialsArray: Tutorial[] = [
     onFailure={onFailure}
   />
   `,
+  icon: "🍅",
       },
     ],
   },
@@ -61,6 +64,7 @@ export const tutorialsArray: Tutorial[] = [
   const methods = ["SMS", "Email", "Authenticator App"];
   console.log("Which MFA method do you hate the least?", methods);
   `,
+  icon: "🍅",
       },
       {
         title:
@@ -76,6 +80,7 @@ export const tutorialsArray: Tutorial[] = [
     .then(confirmResult => console.log("Code sent!"))
     .catch(error => console.error(error));
   `,
+  icon:"🥬",
       },
       {
         title:
@@ -86,6 +91,7 @@ export const tutorialsArray: Tutorial[] = [
   <input type="text" placeholder="Enter 6-digit code" onChange={handleCodeInput} />
   <button onClick={verifyCode}>Verify</button>
   `,
+  icon:"🧀",
       },
     ],
   },
@@ -102,6 +108,7 @@ export const tutorialsArray: Tutorial[] = [
         codeSample: `
   <button onClick={toggleDarkMode}>🌞 / 🌙</button>
   `,
+  icon: "🍅",
       },
       {
         title: "Step 2: Apply Dark Mode Styles (Embrace the Darkness)",
@@ -118,6 +125,8 @@ export const tutorialsArray: Tutorial[] = [
     color: "#000000"
   };
   `,
+  icon:"🥬",
+  
       },
       {
         title:
@@ -128,6 +137,7 @@ export const tutorialsArray: Tutorial[] = [
   localStorage.setItem("theme", "dark");
   const theme = localStorage.getItem("theme") || "light";
   `,
+  icon:"🧀",
       },
     ],
   },

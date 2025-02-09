@@ -10,7 +10,7 @@ export default function Home() {
       <h1>Here are my tutorials!:</h1>
       {tutorialsArray && tutorialsArray.length > 0
         ? tutorialsArray.map((tutorial, tutorialIndex) => {
-            return <div key={tutorialIndex + "tutorials"}>{tutorial.name}</div>;
+            return  <TransitionCards tutorial={tutorial} />;
           })
         : "no tutorials"}
       <Button className="mt-8">
@@ -18,7 +18,6 @@ export default function Home() {
           Click My ShadCN Button
         </Link>
       </Button>
-    <TransitionCards />
     </div>
   );
 }
