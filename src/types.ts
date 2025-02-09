@@ -3,6 +3,8 @@ export interface Step{
     title: string;
     description: string;
     codeSample: string;
+    icon: string;
+
 }
 
 export interface Tutorial {

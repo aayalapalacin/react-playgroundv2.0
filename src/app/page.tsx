@@ -2,6 +2,7 @@ import React from "react";
 import { tutorialsArray } from "@/tutorials";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import TransitionCards from "@/components/transitionCards";
 
 export default function Home() {
   return (
@@ -9,7 +10,7 @@ export default function Home() {
       <h1>Here are my tutorials!:</h1>
       {tutorialsArray && tutorialsArray.length > 0
         ? tutorialsArray.map((tutorial, tutorialIndex) => {
-            return <div key={tutorialIndex + "tutorials"}>{tutorial.name}</div>;
+            return  <TransitionCards tutorial={tutorial} />;
           })
         : "no tutorials"}
       <Button className="mt-8">
