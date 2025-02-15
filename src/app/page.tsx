@@ -3,6 +3,7 @@ import React from "react";
 import { tutorialsArray } from "@/tutorials";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import TransitionCards from "@/components/transitionCards";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -26,17 +27,8 @@ export default function Home() {
               <NavigationMenuContent>
                 <NavigationMenuLink>
                   {tutorialsArray && tutorialsArray.length > 0
-                    ? tutorialsArray.map((tutorial, tutorialIndex) => {
-                        return (
-                          <div
-                            className="w-96"
-                            key={tutorialIndex + "tutorials"}
-                          >
-                            {tutorial.name}
-                          </div>
-                        );
-                      })
-                    : "no tutorials"}
+        ? tutorialsArray.map((tutorial, tutorialIndex) => {
+            return  <TransitionCards tutorial={tutorial} />}
                 </NavigationMenuLink>
               </NavigationMenuContent>
             </NavigationMenuItem>
