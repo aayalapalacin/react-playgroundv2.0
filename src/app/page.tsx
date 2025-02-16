@@ -3,6 +3,8 @@ import { tutorialsArray } from "@/tutorials";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import TransitionCards from "@/components/transitionCards";
+import CodeBlock from "@/components/codeBlock";
+
 
 export default function Home() {
   return (
@@ -13,6 +15,7 @@ export default function Home() {
             return  <TransitionCards tutorial={tutorial} />;
           })
         : "no tutorials"}
+
       <Button className="mt-8">
         <Link href={"https://ui.shadcn.com/docs/components/button"}>
           Click My ShadCN Button

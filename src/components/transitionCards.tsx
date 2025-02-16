@@ -5,6 +5,7 @@ import * as motion from "motion/react-client";
 import { useState } from "react";
 import { Tutorial } from "@/types";
 import { Step } from "@/types";
+import CodeBlock from "./codeBlock";
 
 interface TransitionCardsProps {
     tutorial: Tutorial;
@@ -18,29 +19,38 @@ export default function TransitionCards({ tutorial }: TransitionCardsProps) {
             <h1 className="text-xl font-bold p-4">{tutorial.name}</h1>
             <nav className="bg-gray-50 p-1 border-b border-gray-200 rounded-t-lg">
                 <ul className="flex w-full">
-                    {tutorial?.steps.map((item, index) => (
-                        <motion.li
-                            key={tutorial.name + index}
-                            initial={false}
-                            animate={{
-                                backgroundColor: item.title === selectedTab.title ? "#eee" : "#eee0",
-                            }}
-                            className="flex-1 p-4 cursor-pointer flex justify-between items-center text-gray-900 relative rounded-t-lg"
-                            onClick={() => setSelectedTab(item)}
-                        >
-                            {item.title} {item.icon}
-                            {item.title === selectedTab.title ? (
-                                <motion.div
-                                    className="absolute bottom-[-2px] left-0 right-0 h-[2px] bg-blue-500"
-                                    layoutId="underline"
-                                    id="underline"
-                                />
-                            ) : null}
-                        </motion.li>
-                    ))}
+                    {tutorial ?.steps.map((item, index) => {
+                        console.log("item: ", item)
+                        return(
+                            <>     
+                                <motion.li
+                                    key={tutorial.name + index}
+                                    initial={false}
+                                    animate={{
+                                        backgroundColor: item.title === selectedTab.title ? "#eee" : "#eee0",
+                                    }}
+                                    className="flex-1 p-4 cursor-pointer flex justify-between items-center text-gray-900 relative rounded-t-lg"
+                                    onClick={() => setSelectedTab(item)}
+                                >
+                                    {item.title} {item.icon}
+                                    {item.title === selectedTab.title ? (
+                                        <motion.div
+                                            className="absolute bottom-[-2px] left-0 right-0 h-[2px] bg-blue-500"
+                                            layoutId="underline"
+                                            id="underline"
+                                        />
+                                    ) : null}
+                                    
+                                </motion.li>
+                            </>
+                        )
+                    }
+                    
+                 )}
                 </ul>
             </nav>
-            <main className="flex justify-center items-center flex-1 p-4">
+         
+            <main className="  p-4">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={selectedTab ? selectedTab.title : "empty"}
@@ -50,8 +60,12 @@ export default function TransitionCards({ tutorial }: TransitionCardsProps) {
                         transition={{ duration: 0.2 }}
                         className="text-lg"
                     >
-                        {selectedTab ? selectedTab.description : "No description available"}
+                        {selectedTab.description ? selectedTab.description : "No description available"}
+                       
                     </motion.div>
+                    <div>
+                    {selectedTab.codeSample ?  <CodeBlock code={selectedTab.codeSample} /> : "No code sample available"}
+                    </div>
                 </AnimatePresence>
             </main>
         </div>
