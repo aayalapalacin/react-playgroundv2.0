@@ -20,9 +20,9 @@ export default function TransitionCards({ tutorial }: TransitionCardsProps) {
             <nav className="bg-gray-50 p-1 border-b border-gray-200 rounded-t-lg">
                 <ul className="flex w-full">
                     {tutorial ?.steps.map((item, index) => {
-                        console.log("item: ", item)
+                  
                         return(
-                            <>     
+                            <div key={index+"tutorial"}>     
                                 <motion.li
                                     key={tutorial.name + index}
                                     initial={false}
@@ -42,7 +42,7 @@ export default function TransitionCards({ tutorial }: TransitionCardsProps) {
                                     ) : null}
                                     
                                 </motion.li>
-                            </>
+                            </div>
                         )
                     }
                     
@@ -60,12 +60,16 @@ export default function TransitionCards({ tutorial }: TransitionCardsProps) {
                         transition={{ duration: 0.2 }}
                         className="text-lg"
                     >
-                        {selectedTab.description ? selectedTab.description : "No description available"}
+                        <div className="step-description">
+                            <h1 className=" step-description-title font-bold">Description:</h1>
+                            {selectedTab.description ? selectedTab.description : "No description available"}
+                        </div>
                        
+                        <div className="step-code-sample mt-4">
+                            <h1 className=" step-code-sample-title font-bold">Code Sample:</h1>
+                            {selectedTab.codeSample ?  <CodeBlock code={selectedTab.codeSample} /> : "No code sample available"}
+                        </div>
                     </motion.div>
-                    <div>
-                    {selectedTab.codeSample ?  <CodeBlock code={selectedTab.codeSample} /> : "No code sample available"}
-                    </div>
                 </AnimatePresence>
             </main>
         </div>
