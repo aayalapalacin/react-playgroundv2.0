@@ -5,14 +5,14 @@ import TransitionCards from "@/components/transitionCards";
 
 export default function Tutorials() {
   return (
-    <div className="container justify-items-center m-8">
+    <div className="container justify-items-center m-8 m-auto w-3/4">
       <h1>Here are my tutorials!:</h1>
       <div>
-        {tutorialsArray && tutorialsArray.length > 0
-          ? tutorialsArray.map((tutorial) => {
-              return <TransitionCards tutorial={tutorial} key={""} />;
-            })
-          : "no tutorials"}
+      {tutorialsArray && tutorialsArray.length > 0
+        ? tutorialsArray.map((tutorial, tutorialIndex) => {
+            return  <TransitionCards tutorial={tutorial} key={tutorialIndex+"tutoral"} />;
+          })
+        : "no tutorials"}
       </div>
     </div>
   );
