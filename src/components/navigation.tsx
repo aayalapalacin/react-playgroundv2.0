@@ -6,7 +6,7 @@ export const Navigation = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="flex justify-between items-center p-4">
+    <nav className="flex justify-between items-center p-4 ">
       <div>Logo</div>
       <div>
         <Link
