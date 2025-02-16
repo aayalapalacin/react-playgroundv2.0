@@ -15,7 +15,7 @@ export default function TransitionCards({ tutorial }: TransitionCardsProps) {
     const [selectedTab, setSelectedTab] = useState<Step>(tutorial?.steps[0]);
 
     return (
-        <div className="w-3/4 m-12 border-2 rounded-lg bg-white shadow-lg flex flex-col overflow-hidden">
+        <div className=" m-12 border-2 rounded-lg bg-white shadow-lg flex flex-col overflow-hidden">
             <h1 className="text-xl font-bold p-4">{tutorial.name}</h1>
             <nav className="bg-gray-50 p-1 border-b border-gray-200 rounded-t-lg">
                 <ul className="flex w-full">
