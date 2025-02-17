@@ -6,8 +6,8 @@ export const Navigation = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="flex justify-between items-center p-4 ">
-      <div>Logo</div>
+    <nav className="flex justify-between items-end p-2 ">
+      <img src="/react-logo-no-title.png" className="w-20" alt="react-playground-logo"/>
       <div>
         <Link
           href="/"
