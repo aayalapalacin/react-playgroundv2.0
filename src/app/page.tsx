@@ -1,13 +1,14 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import Dropdown from "@/components/dropdown";
+
+
 
 
 export default function Home() {
   return (
     <div className="container justify-items-center  ">
         <div className="welcome-container flex justify-center items-center w-8/12">
-            <div className="welcome-logo-container"> 
+            <div className="welcome-logo-container m-16"> 
             <img src="/react-logo.png" style={{width:"100rem"}} alt="react-playground-logo"/>
             </div>
             <div className="welcome-text-container">
@@ -21,7 +22,8 @@ export default function Home() {
         </div>
         <div className="user-flow-container flex justify-evenly w-full ">
           <div className="choose-program"> 
-            choose program
+            <Dropdown />
+
             </div>
           <div className="choose-tutorial"> 
             choose tutorial
