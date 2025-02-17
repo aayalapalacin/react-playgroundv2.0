@@ -8,7 +8,7 @@ export default function Home() {
     <div className="container justify-items-center  ">
         <div className="welcome-container flex justify-center items-center w-8/12">
             <div className="welcome-logo-container"> 
-            <img src="/react-logo.png" style={{width:"100rem"}} alt="react-playground-logo"/>
+            <img src="/react-logo-play-learn-build.png" style={{width:"100rem"}} alt="react-playground-logo"/>
             </div>
             <div className="welcome-text-container">
               <h1 className="font-bold text-2xl">Level Up Your React Skills—</h1>
