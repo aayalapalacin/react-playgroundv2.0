@@ -1,6 +1,14 @@
 "use client";
 import Dropdown from "@/components/dropdown";
+import { tutorialsArray } from "@/tutorials";
 
+const generateTutorialNames = ()=>{
+  const tutorialNames = tutorialsArray.map(
+    (tutorial)=>{
+      return tutorial.name
+  });
+  return tutorialNames;
+}
 
 
 
@@ -22,11 +30,12 @@ export default function Home() {
         </div>
         <div className="user-flow-container flex justify-evenly w-full ">
           <div className="choose-program"> 
-            <Dropdown />
+            <Dropdown dropdownTitle="Choose a category" dropdownArray={["All Categories","Authentication","Security", "UI/UX"]} />
 
             </div>
           <div className="choose-tutorial"> 
-            choose tutorial
+            <Dropdown 
+            dropdownTitle="Choose a tutorial" dropdownArray={generateTutorialNames()} />
             </div>
           <div className="navigate-to-tutoril">
             <button>go to tutorial</button>
