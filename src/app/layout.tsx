@@ -12,7 +12,8 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className="bg-gray-100">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"/>
+    <body className="bg-gray-100">
         <header className="bg-slate-900 text-white p-2 text-center mb-4">
           <Navigation />
         </header>

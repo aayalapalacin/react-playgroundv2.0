@@ -13,7 +13,7 @@ const Dropdown: React.FC<DropdownProps> = ({dropdownTitle, dropdownArray, setCat
     const [open, setOpen] = useState<boolean>(false);
     const [title,setTitle]=useState<string>(dropdownTitle)
   return (
-    <div className="p-8 pb-56 flex items-center justify-center ">
+    <div className=" pb-56 flex items-center justify-center ">
     <motion.div animate={open ? "open" : "closed"} className="relative">
       <button
         onClick={() => setOpen((pv) => !pv)}
@@ -30,7 +30,7 @@ const Dropdown: React.FC<DropdownProps> = ({dropdownTitle, dropdownArray, setCat
         initial={wrapperVariants.closed}
         variants={wrapperVariants}
         style={{ originY: "top", translateX: "-50%" }}
-        className="flex flex-col gap-2 p-2 rounded-lg bg-reactDarkBlue shadow-xl absolute top-[120%] left-[50%] w-48 overflow-hidden"
+        className="flex flex-col gap-2 p-2 rounded-lg bg-reactDarkBlue shadow-xl absolute top-[120%] left-[50%] w-auto overflow-hidden"
         >
             {dropdownArray && dropdownArray.length > 0 ?
                         dropdownArray.map((dropdownItem, dropdownIndex)=>{
