@@ -1,9 +1,10 @@
 "use client";
 import React, {useState} from 'react';
 import Dropdown from "@/components/dropdown";
-import { tutorialsArray } from "@/tutorials";
-import { Tutorial } from '@/types';
+import { tutorialsArray } from "@/app/assets/tutorials";
+import { Tutorial } from '@/app/assets/types';
 import 'animate.css';
+import CategoriesView from '@/components/categoriesView';
 
 const categoryArray = ["All Categories","Authentication","Security", "UI/UX"];
 
@@ -89,16 +90,13 @@ export default function Home() {
           />
           </svg>
             <button
-            onClick={()=> {
-              setBtnBounce(false); // Reset first
-              requestAnimationFrame(() => setBtnBounce(true));
-               }
-            }
+          
             className={` tutorial-btn  flex shadow-react-glow items-center gap-2 px-3 py-2 rounded-md text-white bg-reactDarkBlue hover:bg-reactDarkBlue transition-colors `}>
               Go 2 Tutorial
             </button>
           </div>
         </div>
+        <CategoriesView />
     </div>
   );
 }

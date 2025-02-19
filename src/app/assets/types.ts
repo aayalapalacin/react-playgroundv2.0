@@ -14,3 +14,9 @@ export interface Tutorial {
     icon : string; 
 }
 
+
+export interface Categories {
+    name: string;
+    icon : string; 
+    description:string;
+}
