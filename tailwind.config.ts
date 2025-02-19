@@ -11,6 +11,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        reactBlue: "#61DAFB",
+        reactDarkBlue: "#001333",
+
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -51,6 +54,9 @@ const config: Config = {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+      },
+      boxShadow: {
+        'react-glow': '0 14px 18px 0 rgb(0 255 252 / 41%)',
       },
       borderRadius: {
         lg: "var(--radius)",

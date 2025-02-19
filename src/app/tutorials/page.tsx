@@ -1,6 +1,6 @@
 "use client";
 // import Navbar from "@/components/ui/navbar";
-import { tutorialsArray } from "@/tutorials";
+import { tutorialsArray } from "@/app/assets/tutorials";
 import TransitionCards from "@/components/transitionCards";
 
 export default function Tutorials() {

@@ -12,12 +12,13 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className="bg-gray-100">
-        <header className="bg-slate-900 text-white p-4 text-center mb-4">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"/>
+    <body className="bg-gray-100">
+        <header className="bg-slate-900 text-white p-2 text-center mb-[6rem]">
           <Navigation />
         </header>
         {children}
-        <footer className="bg-slate-900 text-white p-4 text-center">
+        <footer className="bg-slate-900 text-white p-4 text-center mt-[7rem]">
           Made with ❤️ by {"React Playground"}
         </footer>
       </body>
