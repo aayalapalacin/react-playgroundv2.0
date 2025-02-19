@@ -55,6 +55,9 @@ const config: Config = {
           "5": "hsl(var(--chart-5))",
         },
       },
+      boxShadow: {
+        'react-glow': '0 14px 18px 0 rgb(0 255 252 / 41%)',
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

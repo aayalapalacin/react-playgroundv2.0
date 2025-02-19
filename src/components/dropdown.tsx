@@ -17,7 +17,7 @@ const Dropdown: React.FC<DropdownProps> = ({dropdownTitle, dropdownArray, setCat
     <motion.div animate={open ? "open" : "closed"} className="relative">
       <button
         onClick={() => setOpen((pv) => !pv)}
-        className="flex items-center gap-2 px-3 py-2 rounded-md text-white bg-reactDarkBlue hover:bg-reactDarkBlue transition-colors"
+        className="flex shadow-react-glow items-center gap-2 px-3 py-2 rounded-md text-white bg-reactDarkBlue hover:bg-reactDarkBlue transition-colors"
       >
         <span className="font-medium text-sm">{title}</span>
         <motion.span variants={iconVariants}>
