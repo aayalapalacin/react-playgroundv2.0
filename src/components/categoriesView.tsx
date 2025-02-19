@@ -9,7 +9,7 @@ const CategoriesView = () => {
         categoriesArray.map((category, categoryIndex) => (
           <div key={categoryIndex} className="text-center">
             <h1 className="text-lg font-semibold mb-2">{category.name}</h1>
-            <div className="w-full h-48 overflow-hidden rounded-xl shadow-lg category-img-container">
+            <div className="w-full  overflow-hidden rounded-xl shadow-lg category-img-container">
               <img
                 src={category.icon}
                 alt={category.name}
