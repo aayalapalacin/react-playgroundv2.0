@@ -12,6 +12,7 @@ interface DropdownProps{
 const Dropdown: React.FC<DropdownProps> = ({dropdownTitle, dropdownArray, setCategory})=>  {
     const [open, setOpen] = useState<boolean>(false);
     const [title,setTitle]=useState<string>(dropdownTitle)
+
   return (
     <div className=" pb-56 flex items-center justify-center ">
     <motion.div animate={open ? "open" : "closed"} className="relative">

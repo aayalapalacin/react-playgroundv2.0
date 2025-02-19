@@ -1,0 +1,8 @@
+.tutorial-btn {
+  transition: transform 0.2s ease-out;
+}
+
+.tutorial-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 14px 18px 0 rgba(0, 131, 128, 0.41) !important;
+}
