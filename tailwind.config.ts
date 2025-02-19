@@ -11,6 +11,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        reactBlue: "#61DAFB",
+        reactDarkBlue: "#001333",
+
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

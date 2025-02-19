@@ -5,19 +5,21 @@ import "../app/styles/dropdown.css";
 interface DropdownProps{
     dropdownTitle: string;
     dropdownArray: string[];
+    setCategory?: React.Dispatch<React.SetStateAction<string>>;
+
 }
 
-const Dropdown: React.FC<DropdownProps> = ({dropdownTitle, dropdownArray})=>  {
-    const [open, setOpen] = useState(false);
-    console.log(dropdownArray,"drop")
+const Dropdown: React.FC<DropdownProps> = ({dropdownTitle, dropdownArray, setCategory})=>  {
+    const [open, setOpen] = useState<boolean>(false);
+    const [title,setTitle]=useState<string>(dropdownTitle)
   return (
     <div className="p-8 pb-56 flex items-center justify-center ">
     <motion.div animate={open ? "open" : "closed"} className="relative">
       <button
         onClick={() => setOpen((pv) => !pv)}
-        className="flex items-center gap-2 px-3 py-2 rounded-md text-indigo-50 bg-indigo-500 hover:bg-indigo-500 transition-colors"
+        className="flex items-center gap-2 px-3 py-2 rounded-md text-white bg-reactDarkBlue hover:bg-reactDarkBlue transition-colors"
       >
-        <span className="font-medium text-sm">{dropdownTitle}</span>
+        <span className="font-medium text-sm">{title}</span>
         <motion.span variants={iconVariants}>
 
             <svg className="uil uil-arrow-down" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="m12 10.8l-4.6 4.6L6 14l6-6l6 6l-1.4 1.4z"></path></svg>
@@ -28,15 +30,23 @@ const Dropdown: React.FC<DropdownProps> = ({dropdownTitle, dropdownArray})=>  {
         initial={wrapperVariants.closed}
         variants={wrapperVariants}
         style={{ originY: "top", translateX: "-50%" }}
-        className="flex flex-col gap-2 p-2 rounded-lg bg-white shadow-xl absolute top-[120%] left-[50%] w-48 overflow-hidden"
+        className="flex flex-col gap-2 p-2 rounded-lg bg-reactDarkBlue shadow-xl absolute top-[120%] left-[50%] w-48 overflow-hidden"
         >
             {dropdownArray && dropdownArray.length > 0 ?
                         dropdownArray.map((dropdownItem, dropdownIndex)=>{
                             return(
                                     <motion.li
                                         variants={itemVariants}
-                                        onClick={() => setOpen(false)}
-                                        className="flex items-center gap-2 w-full p-2 text-xs font-medium whitespace-nowrap rounded-md hover:bg-indigo-100 text-slate-700 hover:text-indigo-500 transition-colors cursor-pointer"
+                                        key={dropdownIndex+"dropdown"}
+                                        onClick={() => {
+                                            setOpen(false)
+                                            setTitle(dropdownItem);
+                                            if(setCategory){
+                                                setCategory(dropdownItem);
+                                            }
+                                        }
+                                        }
+                                        className="flex items-center gap-2 w-full p-2 text-xs text-white text-bold hover:text-reactDarkBlue font-medium whitespace-nowrap rounded-md text-slate-700 hover:bg-reactBlue transition-colors cursor-pointer"
                                     >
                                     
                                     <span>{dropdownItem}</span>

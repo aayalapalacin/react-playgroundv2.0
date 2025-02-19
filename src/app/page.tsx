@@ -1,9 +1,14 @@
 "use client";
+import React, {useState} from 'react';
 import Dropdown from "@/components/dropdown";
 import { tutorialsArray } from "@/tutorials";
+import { Tutorial } from '@/types';
 
-const generateTutorialNames = ()=>{
-  const tutorialNames = tutorialsArray.map(
+const generateTutorialNames = (selectedCategory:string)=>{
+
+  const filteredTutorials = tutorialsArray.filter((tutorial: Tutorial)=> tutorial.category == selectedCategory);
+  const availableTutorials = selectedCategory == "All Categories" ? tutorialsArray : filteredTutorials; 
+  const tutorialNames = availableTutorials.map(
     (tutorial)=>{
       return tutorial.name
   });
@@ -13,6 +18,8 @@ const generateTutorialNames = ()=>{
 
 
 export default function Home() {
+  const categoryArray = ["All Categories","Authentication","Security", "UI/UX"];
+  const [category, setCategory]=useState("All Categories");
   return (
     <div className="container justify-items-center  ">
         <div className="welcome-container flex justify-center items-center w-8/12">
@@ -30,12 +37,18 @@ export default function Home() {
         </div>
         <div className="user-flow-container flex justify-evenly w-full ">
           <div className="choose-program"> 
-            <Dropdown dropdownTitle="Choose a category" dropdownArray={["All Categories","Authentication","Security", "UI/UX"]} />
+            <Dropdown 
+              dropdownTitle="Choose a category" 
+              dropdownArray={categoryArray} 
+              setCategory={setCategory}
+            />
 
             </div>
           <div className="choose-tutorial"> 
             <Dropdown 
-            dropdownTitle="Choose a tutorial" dropdownArray={generateTutorialNames()} />
+              dropdownTitle="Choose a tutorial" 
+              dropdownArray={generateTutorialNames(category)} 
+            />
             </div>
           <div className="navigate-to-tutoril">
             <button>go to tutorial</button>
