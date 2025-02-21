@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import "../app/styles/dropdown.css";
+import "../../app/styles/dropdown.css";
   import { motion } from "framer-motion";
 
 interface DropdownProps{

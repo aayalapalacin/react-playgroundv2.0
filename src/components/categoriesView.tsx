@@ -1,6 +1,6 @@
 import React from 'react';
 import "../app/styles/categoryView.css";
-import { categoriesArray } from '@/app/assets/categories';
+import { categoriesArray } from '../app/assets/categories';
 
 const CategoriesView = () => {
   return (
