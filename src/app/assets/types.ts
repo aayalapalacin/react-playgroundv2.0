@@ -8,6 +8,7 @@ export interface Step{
 }
 
 export interface Tutorial {
+    id: number;
     category: string;
     name: string;
     steps: Step[];
