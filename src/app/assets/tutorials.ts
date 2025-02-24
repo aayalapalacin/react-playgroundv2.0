@@ -45,6 +45,43 @@ export const tutorialsArray: Tutorial[] = [
   `,
         icon: "🍅",
       },
+      {
+        title: "Step 4: Create a Google Developer Account (Because Google Owns Us)",
+        description: "Go to the Google Developer Console and make a new project. Click buttons like a pro.",
+        codeSample: `
+  // In the console:
+  gcloud projects create my-awesome-project
+  // Or, if you prefer the UI, just click around until something works.
+  `,
+        icon: "🧀",
+      },
+      {
+        title: "Step 5: Enable Google Sign-In (Because OAuth is a Pain)",
+        description: "Enable the 'Google Sign-In' API and grab your client ID like it's a free sample.",
+        codeSample: `
+  // In your .env file:
+  REACT_APP_GOOGLE_CLIENT_ID=your-client-id-here
+  `,
+        icon: "🥬",
+      },
+      {
+        title: "Step 6: Implement It in React (Copy-Paste and Pray)",
+        description: "Use the Google OAuth package because writing your own auth system is a nightmare.",
+        codeSample: `
+  import { GoogleLogin } from 'react-google-login';
+  
+  const onSuccess = (response) => console.log('Logged in:', response);
+  const onFailure = (error) => console.log('Failed:', error);
+  
+  <GoogleLogin 
+    clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+    buttonText="Login with Google"
+    onSuccess={onSuccess}
+    onFailure={onFailure}
+  />
+  `,
+        icon: "🍅",
+      },
     ],
   },
   {

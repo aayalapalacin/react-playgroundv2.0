@@ -7,6 +7,7 @@ import 'animate.css';
 import CategoriesView from '@/components/categoriesView';
 import { categoriesArray } from './assets/categories';
 import Link from "next/link";
+import CategoryCard from '@/components/categoryCard';
 
 
 
@@ -33,6 +34,7 @@ export default function Home() {
   
   return (
     <div className="container justify-items-center  ">
+      <CategoryCard />
         <div className="welcome-container flex justify-center items-center w-8/12">
             <div className="welcome-logo-container"> 
             <img src="/react-logo-play-learn-build.png" style={{width:"100rem"}} alt="react-playground-logo"/>
