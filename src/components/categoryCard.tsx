@@ -1,11 +1,11 @@
 import * as motion from "motion/react-client";
 import type { Variants } from "motion/react";
-
+import { categoriesArray } from "@/app/assets/categories";
 export default function CategoryCard() {
     return (
         <div className="max-w-[500px] w-full mx-auto my-[100px] pb-[100px]">
-            {food.map(([emoji, hueA, hueB], i) => (
-                <Card i={i} emoji={emoji} hueA={hueA} hueB={hueB} key={emoji} />
+            {categoriesArray.map((category, i) => (
+                <Card  emoji={category.name}  key={i+category.name} />
             ))}
         </div>
     );
@@ -13,13 +13,11 @@ export default function CategoryCard() {
 
 interface CardProps {
     emoji: string;
-    hueA: number;
-    hueB: number;
-    i: number;
+    
 }
 
-function Card({ emoji, hueA, hueB, i }: CardProps) {
-    const background = `linear-gradient(306deg, ${hue(hueA)}, ${hue(hueB)})`;
+function Card({ emoji }: CardProps) {
+    const background = `linear-gradient(306deg, #61DAFB, #001333)`;
 
     return (
         <motion.div
@@ -30,7 +28,8 @@ function Card({ emoji, hueA, hueB, i }: CardProps) {
         >
             <div className="absolute inset-0" style={{ background, clipPath: clipPathStyle }} />
             <motion.div
-                className="text-[164px] w-[300px] h-[430px] flex justify-center items-center rounded-[20px] bg-gray-100 shadow-lg"
+                className="text-[164px] w-[300px] h-[430px] flex justify-center items-center rounded-[20px] bg-gray-100 "
+                style={{boxShadow:"0px 0px 59px 16px rgb(0 0 0 / 0.1), 0 36px 34px -4px rgb(0 0 0 / 0.1)"}}
                 variants={cardVariants}
             >
                 {emoji}
