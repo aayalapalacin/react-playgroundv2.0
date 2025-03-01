@@ -2,8 +2,8 @@ import { tutorialsArray } from "@/app/assets/tutorials";
 import { Tutorial } from "@/app/assets/types";
 import TransitionCards from "@/components/transitionCards";
 
-export default function SingleTutorial({ params }: { params: { id: string } }) {
-  const { id } = params; 
+export default async function SingleTutorial({ params }: { params: { id: string } }) {
+  const { id } = await params; 
   const idToInt:number = parseInt(id); 
   
   const selectedTutorial: Tutorial = tutorialsArray.filter((filterTutorial)=> filterTutorial.id == idToInt)[0];
