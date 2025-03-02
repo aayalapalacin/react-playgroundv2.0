@@ -1,5 +1,6 @@
 import { tutorialsArray } from "@/app/assets/tutorials";
 import { Tutorial } from "@/app/assets/types";
+import Chat from "@/components/chatbot";
 import TransitionCards from "@/components/transitionCards";
 
 export default async function SingleTutorial({ params }: { params: { id: string } }) {
@@ -12,6 +13,9 @@ export default async function SingleTutorial({ params }: { params: { id: string 
   return (
     <div className="container justify-items-center m-8 mx-auto w-3/4">
       <TransitionCards  tutorial={selectedTutorial}/>
+      <div className="w-full flex justify-center">
+        <Chat />
+      </div>
     </div>
   );
 }

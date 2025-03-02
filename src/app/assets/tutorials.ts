@@ -9,8 +9,10 @@ export const tutorialsArray: Tutorial[] = [
     icon: "🔑",
     steps: [
       {
-        title: "Step 1: Create a Google Developer Account (Because Google Owns Us)",
-        description: "Go to the Google Developer Console and make a new project. Click buttons like a pro.",
+        title:
+          "Step 1: Create a Google Developer Account (Because Google Owns Us)",
+        description:
+          "Go to the Google Developer Console and make a new project. Click buttons like a pro.",
         codeSample: `
   // In the console:
   gcloud projects create my-awesome-project
@@ -20,7 +22,8 @@ export const tutorialsArray: Tutorial[] = [
       },
       {
         title: "Step 2: Enable Google Sign-In (Because OAuth is a Pain)",
-        description: "Enable the 'Google Sign-In' API and grab your client ID like it's a free sample.",
+        description:
+          "Enable the 'Google Sign-In' API and grab your client ID like it's a free sample.",
         codeSample: `
   // In your .env file:
   REACT_APP_GOOGLE_CLIENT_ID=your-client-id-here
@@ -29,7 +32,8 @@ export const tutorialsArray: Tutorial[] = [
       },
       {
         title: "Step 3: Implement It in React (Copy-Paste and Pray)",
-        description: "Use the Google OAuth package because writing your own auth system is a nightmare.",
+        description:
+          "Use the Google OAuth package because writing your own auth system is a nightmare.",
         codeSample: `
   import { GoogleLogin } from 'react-google-login';
   
@@ -91,8 +95,10 @@ export const tutorialsArray: Tutorial[] = [
     icon: "🔑",
     steps: [
       {
-        title: "Step 1: Create a Facebook Developer Account (Another Account to Manage)",
-        description: "Head to the Facebook Developers portal and create an app to get your app ID.",
+        title:
+          "Step 1: Create a Facebook Developer Account (Another Account to Manage)",
+        description:
+          "Head to the Facebook Developers portal and create an app to get your app ID.",
         codeSample: `
   // In the console:
   fb create-app my-awesome-app
@@ -102,7 +108,8 @@ export const tutorialsArray: Tutorial[] = [
       },
       {
         title: "Step 2: Get Your Facebook App ID (Your New Best Friend)",
-        description: "Grab your app ID from the Facebook developer console and store it safely.",
+        description:
+          "Grab your app ID from the Facebook developer console and store it safely.",
         codeSample: `
   // In your .env file:
   REACT_APP_FACEBOOK_APP_ID=your-facebook-app-id
@@ -110,7 +117,8 @@ export const tutorialsArray: Tutorial[] = [
         icon: "🥬",
       },
       {
-        title: "Step 3: Add Facebook Login to React (Because Everyone is Doing It)",
+        title:
+          "Step 3: Add Facebook Login to React (Because Everyone is Doing It)",
         description: "Install the Facebook SDK and implement the login button.",
         codeSample: `
   import { FacebookLogin } from 'react-facebook-login';
@@ -130,6 +138,9 @@ export const tutorialsArray: Tutorial[] = [
     ],
   },
 
+  // AI
+  
+
   // Security
   {
     id:3,
@@ -139,7 +150,8 @@ export const tutorialsArray: Tutorial[] = [
     steps: [
       {
         title: "Step 1: Choose Your Method (Pick Your Poison)",
-        description: "Decide if you want SMS, Email, Authenticator App, or just trust that the user is who they say they are (not recommended).",
+        description:
+          "Decide if you want SMS, Email, Authenticator App, or just trust that the user is who they say they are (not recommended).",
         codeSample: `
   // Options:
   const methods = ["SMS", "Email", "Authenticator App"];
@@ -148,8 +160,10 @@ export const tutorialsArray: Tutorial[] = [
         icon: "🍅",
       },
       {
-        title: "Step 2: Set Up a Verification Code System (Or Use Someone Else’s)",
-        description: "Use a service like Twilio or Firebase to send verification codes. Don’t try to build one from scratch unless you enjoy suffering.",
+        title:
+          "Step 2: Set Up a Verification Code System (Or Use Someone Else’s)",
+        description:
+          "Use a service like Twilio or Firebase to send verification codes. Don’t try to build one from scratch unless you enjoy suffering.",
         codeSample: `
   // Using Firebase:
   const auth = firebase.auth();
@@ -162,8 +176,10 @@ export const tutorialsArray: Tutorial[] = [
         icon: "🥬",
       },
       {
-        title: "Step 3: Make Users Enter the Code (And Hope They Do It Correctly)",
-        description: "Display an input field, validate the code, and authenticate the user. Simple, right?",
+        title:
+          "Step 3: Make Users Enter the Code (And Hope They Do It Correctly)",
+        description:
+          "Display an input field, validate the code, and authenticate the user. Simple, right?",
         codeSample: `
   <input type="text" placeholder="Enter 6-digit code" onChange={handleCodeInput} />
   <button onClick={verifyCode}>Verify</button>
@@ -180,7 +196,8 @@ export const tutorialsArray: Tutorial[] = [
     steps: [
       {
         title: "Step 1: Create Your JWT (The Secret Sauce)",
-        description: "Use a library like jsonwebtoken to create a JWT with a secret key.",
+        description:
+          "Use a library like jsonwebtoken to create a JWT with a secret key.",
         codeSample: `
   const jwt = require('jsonwebtoken');
   const payload = { userId: 1234 };
@@ -204,7 +221,8 @@ export const tutorialsArray: Tutorial[] = [
       },
       {
         title: "Step 3: Verify the Token (Don’t Trust the User)",
-        description: "On the server, verify the token before granting access to sensitive data.",
+        description:
+          "On the server, verify the token before granting access to sensitive data.",
         codeSample: `
   jwt.verify(token, secret, (err, decoded) => {
     if (err) {
@@ -228,7 +246,8 @@ export const tutorialsArray: Tutorial[] = [
     steps: [
       {
         title: "Step 1: Create a Toggle Button (Fancy Switch Optional)",
-        description: "Use a button or a fancy slider to switch themes. You can even animate it if you're feeling spicy.",
+        description:
+          "Use a button or a fancy slider to switch themes. You can even animate it if you're feeling spicy.",
         codeSample: `
   <button onClick={toggleDarkMode}>🌞 / 🌙</button>
   `,
@@ -236,7 +255,8 @@ export const tutorialsArray: Tutorial[] = [
       },
       {
         title: "Step 2: Apply Dark Mode Styles (Embrace the Darkness)",
-        description: "Change the background, text color, and maybe add a spooky font for fun.",
+        description:
+          "Change the background, text color, and maybe add a spooky font for fun.",
         codeSample: `
   const darkModeStyles = {
     backgroundColor: "#121212",
@@ -251,8 +271,10 @@ export const tutorialsArray: Tutorial[] = [
         icon: "🥬",
       },
       {
-        title: "Step 3: Save User Preference (So They Don’t Have to Keep Clicking)",
-        description: "Use localStorage because users have better things to do than re-enable dark mode every time.",
+        title:
+          "Step 3: Save User Preference (So They Don’t Have to Keep Clicking)",
+        description:
+          "Use localStorage because users have better things to do than re-enable dark mode every time.",
         codeSample: `
   localStorage.setItem("theme", "dark");
   const theme = localStorage.getItem("theme") || "light";
@@ -283,7 +305,8 @@ export const tutorialsArray: Tutorial[] = [
       },
       {
         title: "Step 2: Add Media Queries (Make It Mobile-Friendly)",
-        description: "Use media queries to make the navbar responsive on smaller screens.",
+        description:
+          "Use media queries to make the navbar responsive on smaller screens.",
         codeSample: `
   @media (max-width: 768px) {
     nav ul {
@@ -312,4 +335,3 @@ export const tutorialsArray: Tutorial[] = [
     ],
   },
 ];
- 
