@@ -3,8 +3,8 @@
 import { AnimatePresence } from "motion/react";
 import * as motion from "motion/react-client";
 import { useState } from "react";
-import { Tutorial } from "@/types";
-import { Step } from "@/types";
+import { Tutorial } from "@/app/assets/types";
+import { Step } from "@/app/assets/types";
 import CodeBlock from "./codeBlock";
 
 interface TransitionCardsProps {

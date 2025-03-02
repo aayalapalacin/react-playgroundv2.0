@@ -3,6 +3,7 @@ import { Tutorial } from "./types";
 export const tutorialsArray: Tutorial[] = [
   // Authentication
   {
+    id:1,
     category: "Authentication",
     name: "Google Sign-In: Let the API Handle the Hassle",
     icon: "🔑",
@@ -48,9 +49,47 @@ export const tutorialsArray: Tutorial[] = [
   `,
         icon: "🍅",
       },
+      {
+        title: "Step 4: Create a Google Developer Account (Because Google Owns Us)",
+        description: "Go to the Google Developer Console and make a new project. Click buttons like a pro.",
+        codeSample: `
+  // In the console:
+  gcloud projects create my-awesome-project
+  // Or, if you prefer the UI, just click around until something works.
+  `,
+        icon: "🧀",
+      },
+      {
+        title: "Step 5: Enable Google Sign-In (Because OAuth is a Pain)",
+        description: "Enable the 'Google Sign-In' API and grab your client ID like it's a free sample.",
+        codeSample: `
+  // In your .env file:
+  REACT_APP_GOOGLE_CLIENT_ID=your-client-id-here
+  `,
+        icon: "🥬",
+      },
+      {
+        title: "Step 6: Implement It in React (Copy-Paste and Pray)",
+        description: "Use the Google OAuth package because writing your own auth system is a nightmare.",
+        codeSample: `
+  import { GoogleLogin } from 'react-google-login';
+  
+  const onSuccess = (response) => console.log('Logged in:', response);
+  const onFailure = (error) => console.log('Failed:', error);
+  
+  <GoogleLogin 
+    clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+    buttonText="Login with Google"
+    onSuccess={onSuccess}
+    onFailure={onFailure}
+  />
+  `,
+        icon: "🍅",
+      },
     ],
   },
   {
+    id:2,
     category: "Authentication",
     name: "Facebook Login: The Other Login You Can't Escape",
     icon: "🔑",
@@ -133,6 +172,7 @@ export const tutorialsArray: Tutorial[] = [
 
   // Security
   {
+    id:3,
     category: "Security",
     name: "Multi-Factor Authentication: Because Passwords Are Useless",
     icon: "🔐",
@@ -178,6 +218,7 @@ export const tutorialsArray: Tutorial[] = [
     ],
   },
   {
+    id:4,
     category: "Security",
     name: "JWT Authentication: Keep Your Secrets Secure",
     icon: "🔐",
@@ -227,6 +268,7 @@ export const tutorialsArray: Tutorial[] = [
 
   // UI/UX
   {
+    id:5,
     category: "UI/UX",
     name: "Dark Mode: Because Light Mode Burns Our Eyes",
     icon: "🌙",
@@ -271,6 +313,7 @@ export const tutorialsArray: Tutorial[] = [
     ],
   },
   {
+    id:6,
     category: "UI/UX",
     name: "Responsive Navbar: Because Screens Come in All Sizes",
     icon: "🌟",

@@ -1,17 +1,24 @@
 import React, {useState} from 'react'
 import "../app/styles/dropdown.css";
   import { motion } from "framer-motion";
+import { Tutorial } from '@/app/assets/types';
+import { Categories } from '@/app/assets/types';
 
 interface DropdownProps{
     dropdownTitle: string;
-    dropdownArray: string[];
+    dropdownTutorialArray?: Tutorial[];
+    dropdownCategoryArray?: Categories[];
     setCategory?: React.Dispatch<React.SetStateAction<string>>;
+    setChosenTutorial?: React.Dispatch<React.SetStateAction<Tutorial>>;
 
 }
 
-const Dropdown: React.FC<DropdownProps> = ({dropdownTitle, dropdownArray, setCategory})=>  {
+const Dropdown: React.FC<DropdownProps> = ({dropdownTitle, dropdownTutorialArray, dropdownCategoryArray, setCategory, setChosenTutorial})=>  {
     const [open, setOpen] = useState<boolean>(false);
     const [title,setTitle]=useState<string>(dropdownTitle)
+    const dropdownArray = dropdownTutorialArray ? dropdownTutorialArray : dropdownCategoryArray;
+    
+
   return (
     <div className=" pb-56 flex items-center justify-center ">
     <motion.div animate={open ? "open" : "closed"} className="relative">
@@ -40,16 +47,19 @@ const Dropdown: React.FC<DropdownProps> = ({dropdownTitle, dropdownArray, setCat
                                         key={dropdownIndex+"dropdown"}
                                         onClick={() => {
                                             setOpen(false)
-                                            setTitle(dropdownItem);
+                                            setTitle(dropdownItem.name);
                                             if(setCategory){
-                                                setCategory(dropdownItem);
+                                                setCategory(dropdownItem.name);
+                                            }
+                                            if(setChosenTutorial){
+                                              setChosenTutorial(dropdownItem as Tutorial)
                                             }
                                         }
                                         }
                                         className="flex items-center gap-2 w-full p-2 text-xs text-white text-bold hover:text-reactDarkBlue font-medium whitespace-nowrap rounded-md text-slate-700 hover:bg-reactBlue transition-colors cursor-pointer"
                                     >
                                     
-                                    <span>{dropdownItem}</span>
+                                    <span>{dropdownItem.name}</span>
                                     </motion.li>
                             );
                             
