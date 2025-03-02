@@ -49,7 +49,7 @@ function Card({ tutorialName, tutorialIcon,tutorialObj }: CardProps) {
     return (
         <Link href={`/singleTutorial/${tutorialObj.id}`}>
             <motion.div
-                className="overflow-hidden flex justify-center items-center relative pt-5 -mb-[72px]"
+                className="overflow-hidden  flex justify-center items-center relative pt-5 mb-[1rem]"
                 initial="offscreen"
                 whileInView="onscreen"
                 viewport={{ amount: 0.6 }}
