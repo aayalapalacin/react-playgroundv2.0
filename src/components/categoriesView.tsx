@@ -1,6 +1,7 @@
 import React from 'react';
 import "../app/styles/categoryView.css";
 import { categoriesArray } from '@/app/assets/categories';
+import Link from "next/link";
 
 const CategoriesView = () => {
   return (
@@ -10,11 +11,14 @@ const CategoriesView = () => {
           <div key={categoryIndex} className="text-center">
             <h1 className="text-lg font-semibold mb-2">{category.name}</h1>
             <div className="w-full  overflow-hidden rounded-xl shadow-lg category-img-container">
+            <Link href={`/singleCategory/${category.id}`}>
+
               <img
                 src={category.icon}
                 alt={category.name}
                 className="w-full h-full object-cover category-img "
               />
+              </Link>
             </div>
             {category.description && (
               <p className="text-sm text-gray-600 mt-2">{category.description}</p>

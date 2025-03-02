@@ -7,6 +7,7 @@ import 'animate.css';
 import CategoriesView from '@/components/categoriesView';
 import { categoriesArray } from './assets/categories';
 import Link from "next/link";
+import CategoryCard from '@/components/categoryCard';
 
 
 

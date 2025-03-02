@@ -17,6 +17,7 @@ export interface Tutorial {
 
 
 export interface Categories {
+    id: number;
     name: string;
     icon : string; 
     description:string;

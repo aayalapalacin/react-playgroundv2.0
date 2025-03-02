@@ -11,6 +11,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        reactOrange: "FE420C",
         reactBlue: "#61DAFB",
         reactDarkBlue: "#001333",
 
