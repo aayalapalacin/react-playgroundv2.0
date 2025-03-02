@@ -139,36 +139,7 @@ export const tutorialsArray: Tutorial[] = [
   },
 
   // AI
-  {
-    category: "AI",
-    name: "Chatbot: Because We All Need a Virtual Friend",
-    icon: "🤖",
-    steps: [
-      {
-        title: "Demo",
-        description:
-          "Decide if you want to build your own or use a service like Dialogflow or Rasa.",
-        codeSample: `
-  // Options:
-  const platforms = ["Dialogflow", "Rasa", "Custom"];
-  console.log("Which chatbot platform will you choose?", platforms);
-  `,
-        icon: "🍅",
-      },
-      {
-        title: "Step 2: Train Your Chatbot (Teach It to Be Polite)",
-        description:
-          "Create intents, entities, and responses to make your chatbot sound human.",
-        codeSample: `
-  // In Dialogflow:
-  const intent = agent => {
-    agent.add('Hello! How can I help you today?');
-  };
-  `,
-        icon: "🥬",
-      },
-    ],
-  },
+  
 
   // Security
   {
