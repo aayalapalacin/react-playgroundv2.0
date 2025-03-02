@@ -3,6 +3,7 @@ import type { Variants } from "motion/react";
 import { tutorialsArray } from "@/app/assets/tutorials";
 import { Tutorial } from "@/app/assets/types";
 import "../app/styles/categoryCard.css";
+import Link from "next/link";
 
 interface CategoryCardProps {
     selectedCategoryProp: string;
@@ -26,7 +27,8 @@ export default function CategoryCard({ selectedCategoryProp }: CategoryCardProps
                     const tutorialNameReduced: string = tutorial.name.split(":")[0];
                     return (
                         <Card
-                            tutorialProp={tutorialNameReduced}
+                            tutorialObj={tutorial}
+                            tutorialName={tutorialNameReduced}
                             tutorialIcon={tutorial.icon}
                             key={i + tutorialNameReduced}
                         />
@@ -38,31 +40,34 @@ export default function CategoryCard({ selectedCategoryProp }: CategoryCardProps
 }
 
 interface CardProps {
-    tutorialProp: string;
+    tutorialObj: Tutorial;
+    tutorialName: string;
     tutorialIcon: string;
 }
 
-function Card({ tutorialProp, tutorialIcon }: CardProps) {
+function Card({ tutorialName, tutorialIcon,tutorialObj }: CardProps) {
     return (
-        <motion.div
-            className="overflow-hidden flex justify-center items-center relative pt-5 -mb-[72px]"
-            initial="offscreen"
-            whileInView="onscreen"
-            viewport={{ amount: 0.6 }}
-        >
-            <div className="absolute inset-0 left-[15%]" style={{ background, clipPath: clipPathStyle }} />
+        <Link href={`/singleTutorial/${tutorialObj.id}`}>
             <motion.div
-                className="text-[2rem] font-bold w-[300px]  h-[430px] p-5 flex justify-center items-center rounded-[20px] bg-gray-100"
-                style={{
-                    boxShadow:
-                        "0px 0px 59px 16px rgb(0 0 0 / 0.1), 0 36px 34px -4px rgb(0 0 0 / 0.1)",
-                }}
-                variants={cardVariants}
+                className="overflow-hidden flex justify-center items-center relative pt-5 -mb-[72px]"
+                initial="offscreen"
+                whileInView="onscreen"
+                viewport={{ amount: 0.6 }}
             >
-                {tutorialProp}
-                {tutorialIcon}
+                <div className="absolute inset-0 left-[15%]" style={{ background, clipPath: clipPathStyle }} />
+                <motion.div
+                    className="text-[2rem] font-bold w-[300px]  h-[430px] p-5 flex justify-center items-center rounded-[20px] bg-gray-100"
+                    style={{
+                        boxShadow:
+                            "0px 0px 59px 16px rgb(0 0 0 / 0.1), 0 36px 34px -4px rgb(0 0 0 / 0.1)",
+                    }}
+                    variants={cardVariants}
+                >
+                    {tutorialName}
+                    {tutorialIcon}
+                </motion.div>
             </motion.div>
-        </motion.div>
+        </Link>
     );
 }
 
