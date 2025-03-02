@@ -1,6 +1,6 @@
 import { categoriesArray } from "@/app/assets/categories";
 import { Categories } from "@/app/assets/types";
-import TransitionCards from "@/components/transitionCards";
+// import TransitionCards from "@/components/transitionCards";
 import CategoryCard from "@/components/categoryCard";
 
 export default async function SingleCategory({ params }: { params: { id: string } }) {
