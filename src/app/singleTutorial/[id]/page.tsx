@@ -15,7 +15,7 @@ export default async function SingleTutorial({ params }: { params: { id: string 
     <div className="container justify-items-center m-8 mx-auto w-3/4">
       <TransitionCards  tutorial={selectedTutorial}/>
       <div className="w-full flex justify-center">
-        {/* dynamic component should render here */}
+        
         {React.createElement(selectedTutorial.tutorialComponent)}
       </div>
     </div>
