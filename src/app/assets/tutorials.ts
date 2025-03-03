@@ -1,3 +1,4 @@
+import TestComponent  from "@/components/testComponent";
 import { Tutorial } from "./types";
 
 export const tutorialsArray: Tutorial[] = [
@@ -6,6 +7,7 @@ export const tutorialsArray: Tutorial[] = [
     id:1,
     category: "Authentication",
     name: "Google Sign-In: Let the API Handle the Hassle",
+    tutorialComponent: TestComponent,
     icon: "🔑",
     steps: [
       {
@@ -92,6 +94,7 @@ export const tutorialsArray: Tutorial[] = [
     id:2,
     category: "Authentication",
     name: "Facebook Login: The Other Login You Can't Escape",
+    tutorialComponent: TestComponent,
     icon: "🔑",
     steps: [
       {
@@ -146,6 +149,7 @@ export const tutorialsArray: Tutorial[] = [
     id:3,
     category: "Security",
     name: "Multi-Factor Authentication: Because Passwords Are Useless",
+    tutorialComponent: TestComponent,
     icon: "🔐",
     steps: [
       {
@@ -192,6 +196,7 @@ export const tutorialsArray: Tutorial[] = [
     id:4,
     category: "Security",
     name: "JWT Authentication: Keep Your Secrets Secure",
+    tutorialComponent: TestComponent,
     icon: "🔐",
     steps: [
       {
@@ -242,6 +247,7 @@ export const tutorialsArray: Tutorial[] = [
     id:5,
     category: "UI/UX",
     name: "Dark Mode: Because Light Mode Burns Our Eyes",
+    tutorialComponent: TestComponent,
     icon: "🌙",
     steps: [
       {
@@ -287,6 +293,7 @@ export const tutorialsArray: Tutorial[] = [
     id:6,
     category: "UI/UX",
     name: "Responsive Navbar: Because Screens Come in All Sizes",
+    tutorialComponent: TestComponent,
     icon: "🌟",
     steps: [
       {
