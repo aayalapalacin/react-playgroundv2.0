@@ -1,3 +1,4 @@
+import { ComponentType } from "react";
 
 export interface Step{
     title: string;
@@ -13,6 +14,7 @@ export interface Tutorial {
     name: string;
     steps: Step[];
     icon : string; 
+    tutorialComponent: ComponentType; // Accepts a component that takes 'title' as a prop
 }
 
 
