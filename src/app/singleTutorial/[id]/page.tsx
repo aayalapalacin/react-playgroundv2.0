@@ -4,6 +4,7 @@ import Chat from "@/components/chatbot";
 import TransitionCards from "@/components/transitionCards";
 import React from "react";
 
+
 export default async function SingleTutorial({ params }: { params: { id: string } }) {
   const { id } = await params; 
   const idToInt:number = parseInt(id); 

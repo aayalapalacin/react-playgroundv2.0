@@ -8,7 +8,7 @@ export const tutorialsArray: Tutorial[] = [
     id:1,
     category: "Authentication",
     name: "Google Sign-In: Let the API Handle the Hassle",
-    tutorialComponent: Chat,
+    tutorialComponent: TestComponent,
     icon: "🔑",
     steps: [
       {
@@ -342,4 +342,171 @@ export const tutorialsArray: Tutorial[] = [
       },
     ],
   },
+  {
+    id: 7,
+    category: "AI/Development",
+    name: "Building a Chatbot with Next.js and OpenAI",
+    tutorialComponent: Chat,
+    icon: "🤖",
+    steps: [
+      {
+        title: "Step 1: Set up environment",
+        description: "Install necessary dependencies, including UI components and OPEN AI key generated from account.",
+        codeSample: `
+  npm install openai-sdk  @ai-sdk/react react-markdown remark-gfm
+  // Store in your .env file
+  OPENAI_API_KEY=your-api-key-here 
+  `,
+        icon: "🔧",
+      },
+      {
+        title: "Step 2: Implement OpenAI Model Integration (Teaching the Bot to Respond)",
+        description: "Integrate the OpenAI API to generate responses from the chatbot with a custom prompt that responds in rhymes.",
+        codeSample: `
+import { openai } from '@ai-sdk/openai';
+import { streamText } from 'ai';
+
+// Allow streaming responses up to 30 seconds
+export const maxDuration = 30;
+
+export async function POST(req: Request) {
+  const { messages } = await req.json();
+
+  const result = streamText({
+    model: openai('gpt-4o'),
+    messages,
+  });
+
+  return result.toDataStreamResponse();
+}
+  `,
+        icon: "🧠",
+      },
+      {
+        title: "Step 3: Build a Basic Chat Interface",
+        description: "Create a simple chat interface where users can input text and receive responses.",
+        codeSample: `
+"use client";
+
+import { useChat } from "@ai-sdk/react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+
+export default function Chat() {
+  const { messages, input, handleInputChange, handleSubmit } = useChat();
+
+  return (
+    <div className="flex flex-col w-full max-w-md p-4 mx-auto border border-gray-300 rounded-lg shadow-lg bg-white dark:bg-zinc-900">
+      <div className="flex flex-col gap-2 max-h-64 overflow-y-auto p-2">
+        {messages.map((m) => (
+          <div key={m.id} className="whitespace-pre-wrap">
+            <strong>{m.role === "user" ? "User: " : "AI: "}</strong>
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                pre: ({ children }) => (
+                  <pre className="bg-gray-800 text-white p-3 rounded-lg overflow-x-auto">
+                    {children}
+                  </pre>
+                ),
+                code: ({ children }) => (
+                  <code className="bg-gray-700 text-green-300 p-1 rounded">
+                    {children}
+                  </code>
+                ),
+              }}
+            >
+              {m.content}
+            </ReactMarkdown>
+          </div>
+        ))}
+      </div>
+
+      <form onSubmit={handleSubmit} className="mt-4">
+        <input
+          className="w-full p-2 border border-zinc-300 dark:border-zinc-800 rounded shadow-sm bg-white dark:bg-zinc-900"
+          value={input}
+          placeholder="Say something..."
+          onChange={handleInputChange}
+        />
+      </form>
+    </div>
+  );
+}
+  `,
+        icon: "💬",
+      },
+      {
+        title: "Step 4: Customize Chatbot Behavior",
+        description: "Modify the chatbot's behavior using system instructions and filter messages to exclude system prompts.",
+        codeSample: `
+"use client";
+
+import { useChat } from "@ai-sdk/react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { tutorialsArray } from "@/app/assets/tutorials";
+
+export default function Chat() {
+  const systemInstructions = \`
+  Users will interact with you to ask questions about a website related to React tutorials.
+  If they ask about unrelated topics, politely inform them that you only assist with React tutorials.
+  You should only reference tutorials found in this array: \${tutorialsArray}.
+
+  - If someone asks about available tutorials, analyze the \${tutorialsArray} to determine their names.
+  - If someone wants details about a specific tutorial, locate it in the array and describe its contents.
+  \`;
+
+  const { messages, input, handleInputChange, handleSubmit } = useChat({
+    initialMessages: [{
+      role: "system", content: systemInstructions,
+      id: ""
+    }],
+  });
+
+  return (
+    <div className="flex flex-col w-full max-w-md p-4 mx-auto border border-gray-300 rounded-lg shadow-lg bg-white dark:bg-zinc-900">
+      <div className="flex flex-col gap-2 max-h-64 overflow-y-auto p-2">
+        {messages.filter((m) => m.role !== "system").map((m) => (
+          <div key={m.id} className="whitespace-pre-wrap">
+            <strong>{m.role === "user" ? "User: " : "AI: "}</strong>
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                pre: ({ children }) => (
+                  <pre className="bg-gray-800 text-white p-3 rounded-lg overflow-x-auto">
+                    {children}
+                  </pre>
+                ),
+                code: ({ children }) => (
+                  <code className="bg-gray-700 text-green-300 p-1 rounded">
+                    {children}
+                  </code>
+                ),
+              }}
+            >
+              {m.content}
+            </ReactMarkdown>
+          </div>
+        ))}
+      </div>
+
+      <form onSubmit={handleSubmit} className="mt-4">
+        <input
+          className="w-full p-2 border border-zinc-300 dark:border-zinc-800 rounded shadow-sm bg-white dark:bg-zinc-900"
+          value={input}
+          placeholder="Ask about React tutorials..."
+          onChange={handleInputChange}
+        />
+      </form>
+    </div>
+  );
+}
+  `,
+        icon: "🤖",
+      },
+    ],
+}
+
+  
 ];
