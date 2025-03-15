@@ -360,101 +360,164 @@ export const tutorialsArray: Tutorial[] = [
         icon: "🔧",
       },
       {
-        title: "Step 2: Implement OpenAI Model Integration (Teaching the Bot to Respond)",
-        description: "Integrate the OpenAI API to generate responses from the chatbot with a custom prompt that responds in rhymes.",
+        title: "Step 2: Integrate OpenAI Model and Build Chatbot Component",
+        description: `In this step, you will integrate the OpenAI API to enable the chatbot to respond, and create a React component to manage the chat interactions. You’ll use the \`useChat\` hook from \`@ai-sdk/react\` to manage the state of messages, the user input, and handle the submission. The \`useChat\` hook provides the following:
+        
+        - \`messages\`: The array of messages, where each message contains the user’s input or the AI’s response.
+        - \`input\`: The current text that the user is typing in the input field.
+        - \`handleInputChange\`: The function that updates the \`input\` state whenever the user types in the input field.
+        - \`handleSubmit\`: The function to handle form submission and send the message to the API to get a response from the chatbot.
+      
+        In this code, we will also include the backend API call that streams the responses from OpenAI based on the messages received from the chatbot.`,
         codeSample: `
-import { openai } from '@ai-sdk/openai';
-import { streamText } from 'ai';
-
-// Allow streaming responses up to 30 seconds
-export const maxDuration = 30;
-
-export async function POST(req: Request) {
-  const { messages } = await req.json();
-
-  const result = streamText({
-    model: openai('gpt-4o'),
-    messages,
-  });
-
-  return result.toDataStreamResponse();
-}
-  `,
+       // Create the chatbot React component
+      "use client";
+      
+      import { openai } from '@ai-sdk/openai';
+      import { useChat } from '@ai-sdk/react';
+      import { streamText } from 'ai';
+      
+    
+      export default function Chat() {
+        const { messages, input, handleInputChange, handleSubmit } = useChat();
+      
+        return (
+         <div>
+          Chatbot component!
+          </div>
+        );
+      }
+      
+      // Backend POST request for streaming AI responses
+      // Should be in app/api/chat/route.ts
+      export async function POST(req: Request) {
+        const { messages } = await req.json();
+      
+        // Integrating OpenAI's GPT-4 model to generate responses
+        const result = streamText({
+          model: openai('gpt-4o'),
+          messages,
+        });
+      
+        return result.toDataStreamResponse();
+      }
+        `,
         icon: "🧠",
-      },
+      }
+      ,
       {
         title: "Step 3: Build a Basic Chat Interface",
-        description: "Create a simple chat interface where users can input text and receive responses.",
+        description: "The messages in your chat interface are represented as objects, where each message has a `role` property. The `role` can either be 'user' (indicating the person typing) or 'assistant' (indicating the AI response). In this step, you will map through the messages and create a dynamic label that conditionally renders 'User' or 'AI' based on the `role`. You can customize this label to display whichever text fits your needs, but the goal is to ensure the user knows who is sending the message. In this example, we will render a label above each message that shows either 'User' or 'AI' based on the role of the message.",
         codeSample: `
-"use client";
-
-import { useChat } from "@ai-sdk/react";
+      "use client";
+      
+      import { useChat } from "@ai-sdk/react";
+      
+      export default function Chat() {
+        const { messages, input, handleInputChange, handleSubmit } = useChat();
+      
+        return (
+          <div className="flex flex-col w-full max-w-md p-4 mx-auto border border-gray-300 rounded-lg shadow-lg bg-white dark:bg-zinc-900">
+            <div className="flex flex-col gap-2 max-h-64 overflow-y-auto p-2">
+              {messages.map((m) => (
+                <div key={m.id} className="whitespace-pre-wrap">
+                  <strong>{m.role === "user" ? "User: " : "AI: "}</strong>
+                  <p>{m.content}</p>
+                </div>
+              ))}
+            </div>
+      
+            <form onSubmit={handleSubmit} className="mt-4">
+              <input
+                className="w-full p-2 border border-zinc-300 dark:border-zinc-800 rounded shadow-sm bg-white dark:bg-zinc-900"
+                value={input}
+                placeholder="Say something..."
+                onChange={handleInputChange}
+              />
+            </form>
+          </div>
+        );
+      }
+        `,
+        icon: "💬",
+      }
+      ,
+      {
+        title: "Step 4: Handle Markdown Responses",
+        description: "The AI uses Markdown language to format responses. We'll show how to handle markdown like bold text, lists, and code snippets using ReactMarkdown.",
+        codeSample: `
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-export default function Chat() {
-  const { messages, input, handleInputChange, handleSubmit } = useChat();
+// Sample Markdown input
+const markdownText = \`
+# This is a header
+- This is a list item
+- Another list item
+**Bold Text**
+\`;
 
+export default function MarkdownExample() {
   return (
-    <div className="flex flex-col w-full max-w-md p-4 mx-auto border border-gray-300 rounded-lg shadow-lg bg-white dark:bg-zinc-900">
-      <div className="flex flex-col gap-2 max-h-64 overflow-y-auto p-2">
-        {messages.map((m) => (
-          <div key={m.id} className="whitespace-pre-wrap">
-            <strong>{m.role === "user" ? "User: " : "AI: "}</strong>
-            <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
-              components={{
-                pre: ({ children }) => (
-                  <pre className="bg-gray-800 text-white p-3 rounded-lg overflow-x-auto">
-                    {children}
-                  </pre>
-                ),
-                code: ({ children }) => (
-                  <code className="bg-gray-700 text-green-300 p-1 rounded">
-                    {children}
-                  </code>
-                ),
-              }}
-            >
-              {m.content}
-            </ReactMarkdown>
-          </div>
-        ))}
-      </div>
-
-      <form onSubmit={handleSubmit} className="mt-4">
-        <input
-          className="w-full p-2 border border-zinc-300 dark:border-zinc-800 rounded shadow-sm bg-white dark:bg-zinc-900"
-          value={input}
-          placeholder="Say something..."
-          onChange={handleInputChange}
-        />
-      </form>
-    </div>
+    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+      {markdownText}
+    </ReactMarkdown>
   );
 }
-  `,
-        icon: "💬",
+        `,
+        icon: "📝",
       },
       {
-        title: "Step 4: Customize Chatbot Behavior",
-        description: "Modify the chatbot's behavior using system instructions and filter messages to exclude system prompts.",
+        title: "Step 5: Display Code Snippets",
+        description: "When the AI sends code, use the `pre` and `code` tags to style it appropriately. Learn how to customize the appearance of code snippets.",
+        codeSample: `
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+
+export default function CodeSnippet() {
+  const markdownText = \`
+\`\`\js
+const hello = "Hello, World!";
+console.log(hello);
+\`\`\`
+  \`;
+
+  return (
+    <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
+      components={{
+        pre: ({ children }) => (
+          <pre className="bg-gray-800 text-white p-3 rounded-lg overflow-x-auto">
+            {children}
+          </pre>
+        ),
+        code: ({ children }) => (
+          <code className="bg-gray-700 text-green-300 p-1 rounded">
+            {children}
+          </code>
+        ),
+      }}
+    >
+      {markdownText}
+    </ReactMarkdown>
+  );
+}
+        `,
+        icon: "💻",
+      },
+      {
+        title: "Step 6: Customize Chatbot Behavior (Basic System Instructions)",
+        description: "Customize chatbot behavior with simple system instructions, such as making the chatbot talk like Santa Claus. Filter out system messages from display.",
         codeSample: `
 "use client";
 
 import { useChat } from "@ai-sdk/react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { tutorialsArray } from "@/app/assets/tutorials";
 
 export default function Chat() {
   const systemInstructions = \`
-  Users will interact with you to ask questions about a website related to React tutorials.
-  If they ask about unrelated topics, politely inform them that you only assist with React tutorials.
-  You should only reference tutorials found in this array: \${tutorialsArray}.
-
-  - If someone asks about available tutorials, analyze the \${tutorialsArray} to determine their names.
-  - If someone wants details about a specific tutorial, locate it in the array and describe its contents.
+  You are a chatbot who talks like Santa Claus no matter what.
   \`;
 
   const { messages, input, handleInputChange, handleSubmit } = useChat({
@@ -495,15 +558,15 @@ export default function Chat() {
         <input
           className="w-full p-2 border border-zinc-300 dark:border-zinc-800 rounded shadow-sm bg-white dark:bg-zinc-900"
           value={input}
-          placeholder="Ask about React tutorials..."
+          placeholder="Ask Santa something..."
           onChange={handleInputChange}
         />
       </form>
     </div>
   );
 }
-  `,
-        icon: "🤖",
+        `,
+        icon: "🎅",
       },
     ],
 }
