@@ -20,7 +20,7 @@ export default function Chat() {
   
       <div  className="flex flex-col gap-2 max-h-64 overflow-y-auto p-2">
         {messages.filter((m) => m.role !== "system").map((m) => (
-          <div key={m.id} className="mx-2 my-1 bg-gray-50 p-3 whitespace-pre-wrap">
+          <div key={m.id} className="mx-2 my-1g bg-gray-50 p-3 whitespace-pre-wrap">
             <strong>{m.role === "user" ? "User: " : "AI: "}</strong>
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
