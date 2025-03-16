@@ -16,11 +16,11 @@ export default function Chat() {
   });
 
   return (
-    <div className=" w-full max-w-md p-4 mx-auto border border-gray-300 bg-white">
-      {/* Message Display Area */}
-      <div className=" max-h-64 overflow-y-auto p-2">
+    <div  className="flex flex-col w-full max-w-md p-4 mx-auto border border-gray-300 rounded-lg shadow-lg bg-white dark:bg-zinc-900">
+  
+      <div  className="flex flex-col gap-2 max-h-64 overflow-y-auto p-2">
         {messages.filter((m) => m.role !== "system").map((m) => (
-          <div key={m.id} className="mx-2 my-4 bg-gray-50 p-3 whitespace-pre-wrap">
+          <div key={m.id} className="mx-2 my-1 bg-gray-50 p-3 whitespace-pre-wrap">
             <strong>{m.role === "user" ? "User: " : "AI: "}</strong>
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
@@ -38,7 +38,7 @@ export default function Chat() {
       {/* Input Form */}
       <form onSubmit={handleSubmit} className="mt-4">
         <input
-          className="w-full p-2 border border-gray-300"
+           className="w-full p-2 border border-zinc-300 dark:border-zinc-800 rounded shadow-sm bg-white dark:bg-zinc-900"
           value={input}
           placeholder="Say something..."
           onChange={handleInputChange}
