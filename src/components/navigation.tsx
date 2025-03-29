@@ -19,13 +19,13 @@ export const Navigation = () => {
           width={500}
           height={500}
         />
-        <h4 className={`mt-5 text-[#61dafb] text-xl`}>React Playground</h4>
+        <h4 className={`mt-5 text-[#00A6FB] text-xl`}>React Playground</h4>
       </div>
       <div className="flex">
         <Link
           href="/"
           className={
-            pathname === "/" ? "font-bold mr-4" : "text-[#61dafb] mr-4"
+            pathname === "/" ? "font-bold mr-4" : "text-[#00A6FB] mr-4"
           }
         >
           Home
@@ -33,7 +33,7 @@ export const Navigation = () => {
         <Link
           href="/tutorials"
           className={
-            pathname === "/tutorials" ? "font-bold mr-4" : "text-[#61dafb] mr-4"
+            pathname === "/tutorials" ? "font-bold mr-4" : "text-[#00A6FB] mr-4"
           }
         >
           Tutorials
@@ -41,7 +41,7 @@ export const Navigation = () => {
         <Link
           href="/about"
           className={
-            pathname === "/about" ? "font-bold mr-4" : "text-[#61dafb] mr-4"
+            pathname === "/about" ? "font-bold mr-4" : "text-[#00A6FB] mr-4"
           }
         >
           About
