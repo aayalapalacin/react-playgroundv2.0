@@ -18,5 +18,11 @@ export const categoriesArray :Categories[] = [
     name:"Authentication",
     icon:"/authentication.jpg",
     description:"Verifying user identity for secure access."
+},
+{
+    id:4,
+    name:"AI/Development",
+    icon:"/ai.webp",
+    description:"Using artificial intenlligence to enhance our applications and user experience"
 }
 ];

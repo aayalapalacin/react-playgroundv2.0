@@ -15,7 +15,7 @@ export default function TransitionCards({ tutorial }: TransitionCardsProps) {
     const [selectedTab, setSelectedTab] = useState<Step>(tutorial?.steps[0]);
 
     return (
-        <div className=" m-12 border-2 rounded-lg bg-white shadow-lg flex flex-col overflow-hidden">
+        <div className="w-full m-12 border-2 rounded-lg bg-white shadow-lg flex flex-col overflow-hidden">
             <h1 className="text-xl font-bold p-4">{tutorial.name}</h1>
             <nav className="bg-gray-50 p-1 border-b border-gray-200 rounded-t-lg">
                 <ul className="flex w-full">
@@ -62,7 +62,7 @@ export default function TransitionCards({ tutorial }: TransitionCardsProps) {
                     >
                         <div className="step-description">
                             <h1 className=" step-description-title font-bold">Description:</h1>
-                            {selectedTab.description ? selectedTab.description : "No description available"}
+                            {selectedTab.description ?<CodeBlock code={selectedTab.description} />   : "No description available"}
                         </div>
                        
                         <div className="step-code-sample mt-4">

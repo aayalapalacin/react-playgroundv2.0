@@ -8,7 +8,7 @@ export const tutorialsArray: Tutorial[] = [
     id:1,
     category: "Authentication",
     name: "Google Sign-In: Let the API Handle the Hassle",
-    tutorialComponent: Chat,
+    tutorialComponent: TestComponent,
     icon: "🔑",
     steps: [
       {
@@ -342,4 +342,285 @@ export const tutorialsArray: Tutorial[] = [
       },
     ],
   },
+  {
+    id: 7,
+    category: "AI/Development",
+    name: "Building a Chatbot with Next.js and OpenAI",
+    tutorialComponent: Chat,
+    icon: "🤖",
+    steps: [
+      {
+        title: "Step 1: Set up environment",
+        description: `
+        Install necessary dependencies, including
+        UI components and OPEN AI key generated from account.`,
+        codeSample: `
+  npm install openai-sdk  @ai-sdk/react react-markdown remark-gfm
+  // Store in your .env file
+  OPENAI_API_KEY=your-api-key-here 
+  `,
+        icon: "🔧",
+      },
+      {
+        title: "Step 2: Integrate OpenAI Model and Build Chatbot Component",
+        description: `
+        In this step, you will integrate the OpenAI API to enable the chatbot to respond, 
+        and create a React component to manage the chat interactions. 
+        You’ll use the \`useChat\` hook from \`@ai-sdk/react\` to manage the state of messages,
+        the user input, and handle the submission. The \`useChat\` hook provides the following:
+        
+        - \`messages\`: The array of messages, where each message contains the user’s input or the AI’s response.
+        - \`input\`: The current text that the user is typing in the input field.
+        - \`handleInputChange\`: The function that updates the \`input\` state whenever the user types in the input field.
+        - \`handleSubmit\`: The function to handle form submission and send the message to the API to get a response from the chatbot.
+      
+        In this code, we will also include the backend API call that streams the responses 
+        from OpenAI based on the messages received from the chatbot.
+      `,
+      
+        codeSample: `
+      // Client-side: Create the Chatbot React component
+
+      "use client";
+      
+      import { openai } from '@ai-sdk/openai';
+      import { useChat } from '@ai-sdk/react';
+      import { streamText } from 'ai';
+      
+    
+      export default function Chat() {
+        const { messages, input, handleInputChange, handleSubmit } = useChat();
+      
+        return (
+         <div>
+          Chatbot component!
+          </div>
+        );
+      }
+      
+  // Server-side: Backend API route for handling AI responses
+// Should be placed in app/api/chat/route.ts
+
+      export async function POST(req: Request) {
+        const { messages } = await req.json();
+      
+        // Integrating OpenAI's GPT-4 model to generate responses
+        const result = streamText({
+          model: openai('gpt-4o'),
+          messages,
+        });
+      
+        return result.toDataStreamResponse();
+      }
+        `,
+        icon: "🧠",
+      }
+      ,
+      {
+        title: "Step 3: Build a Basic Chat Interface",
+        description: `
+        The messages in your chat interface are represented as objects, 
+        where each message has a \`role\` property. The \`role\` can either be 
+        "user" (indicating the person typing) or "assistant" (indicating the AI response).
+        
+        In this step, you will map through the messages and create a dynamic label 
+        that conditionally renders "User" or "AI" based on the \`role\`. 
+        
+        You can customize this label to display whichever text fits your needs, 
+        but the goal is to ensure the user knows who is sending the message.
+        
+        In this example, we will render a label above each message that shows 
+        either "User" or "AI" based on the role of the message.
+
+        The input and form submit can use built in hooks from useChat()
+        `,
+      codeSample: `
+      "use client";
+      
+      import { useChat } from "@ai-sdk/react";
+      
+      export default function Chat() {
+        const { messages, input, handleInputChange, handleSubmit } = useChat();
+      
+        return (
+          <div className="w-full max-w-md p-4 mx-auto border bg-gray-100">
+              <div className="max-h-64 overflow-y-auto p-2">
+                {messages.map((m) => (
+                  <div key={m.id} className="whitespace-pre-wrap">
+                    <strong>{m.role === "user" ? "User: " : "AI: "}</strong>
+                    <p>{m.content}</p>
+                  </div>
+                ))}
+              </div>
+
+              <form onSubmit={handleSubmit} className="mt-4">
+                <input
+                  className="w-full p-2 border bg-white"
+                  value={input}
+                  placeholder="Say something..."
+                  onChange={handleInputChange}
+                />
+              </form>
+          </div>
+
+        );
+      }
+        `,
+        icon: "💬",
+      }
+      ,
+      {
+        title: "Step 4: Handle Markdown Responses",
+        description: `
+        The AI uses Markdown language to format responses. 
+        For example, bold text would be shown as: # This is bold
+        Or if they want to show code snippet it might be:
+        '''javascript
+        console.log("this is code!");
+        '''
+        
+        In order for this to render as intentioned, 
+        we will pass it to a ReactMarkdown component
+        `
+        ,
+        codeSample: `
+     "use client";
+      
+      import { useChat } from "@ai-sdk/react";
+      import ReactMarkdown from "react-markdown";
+      import remarkGfm from "remark-gfm";
+
+      export default function Chat() {
+        const { messages, input, handleInputChange, handleSubmit } = useChat();
+      
+        return (
+          <div className="w-full max-w-md p-4 mx-auto border bg-gray-100">
+            <div className="max-h-64 overflow-y-auto p-2">
+              {messages.map((m) => (
+                <div key={m.id} className="whitespace-pre-wrap">
+                  <strong>{m.role === "user" ? "User: " : "AI: "}</strong>
+                  // HERE ADDING MARKKDOWN COMPONENT
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {m.content}
+                  </ReactMarkdown>
+                </div>
+              ))}
+            </div>
+      
+           <form onSubmit={handleSubmit} className="mt-4">
+                <input
+                  className="w-full p-2 border bg-white"
+                  value={input}
+                  placeholder="Say something..."
+                  onChange={handleInputChange}
+                />
+              </form>
+          </div>
+        );
+      }
+        `,
+        icon: "📝",
+      },
+      {
+        title: "Step 5: Display Code Snippets",
+        description: `
+        When the AI sends code, use the pre and code tags like:
+        <pre>
+          <code>some code here</code>
+        </pre>
+        Therefore we can customize the pre tag like it's the parent div
+        and customize the styling of the code block like it's the children div
+        You can think this in terms of parent div having background color
+        and the chidren having text color, etc.
+        `,
+        codeSample: `
+"use client";
+      
+      import { useChat } from "@ai-sdk/react";
+      import ReactMarkdown from "react-markdown";
+      import remarkGfm from "remark-gfm";
+      
+      export default function Chat() {
+        const { messages, input, handleInputChange, handleSubmit } = useChat();
+      
+        return (
+          <div className="w-full max-w-md p-4 mx-auto border bg-gray-100">
+            <div className="max-h-64 overflow-y-auto p-2">
+              {messages.map((m) => (
+                <div key={m.id} className="whitespace-pre-wrap">
+                  <strong>{m.role === "user" ? "User: " : "AI: "}</strong>
+                  <ReactMarkdown 
+                  remarkPlugins={[remarkGfm]}
+                  // HERE ADDING CUSTOM STYLING TO PRE AND CODE TAGS
+                  components={{
+                    pre: ({ children }) => <pre className="bg-gray-800 p-2 overflow-x-auto">{children}</pre>,
+                    code: ({ children }) => <code className=" text-green-300 p-1">{children}</code>,
+                  }}
+                  >
+                    {m.content}
+                  </ReactMarkdown>
+                </div>
+              ))}
+            </div>
+      
+            <form onSubmit={handleSubmit} className="mt-4">
+                <input
+                  className="w-full p-2 border bg-white"
+                  value={input}
+                  placeholder="Say something..."
+                  onChange={handleInputChange}
+                />
+              </form>
+          </div>
+        );
+      }
+        `,
+        icon: "💻",
+      },
+      {
+        title: "Step 6: Customize Chatbot Behavior (Basic System Instructions)",
+        description: `
+        Customize chatbot behavior with simple system instructions, 
+        such as making the chatbot talk like Santa Claus.
+        
+        The system instructions is technically saved in the messages array
+        with a role of "system". So we need to filter method
+        to remove any messages that have a role of "system"
+        so the system instructions doesn't render on webpage 
+        `,
+        codeSample: `
+"use client";
+
+import { useChat } from "@ai-sdk/react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+
+export default function Chat() {
+  const systemInstructions = \`
+  You are a chatbot who talks like Santa Claus no matter what.
+  \`;
+
+  const { messages, input, handleInputChange, handleSubmit } = useChat({
+    initialMessages: [{
+      role: "system", content: systemInstructions,
+      id: ""
+    }],
+  });
+
+  return (
+    <div className="w-full max-w-md p-4 mx-auto border bg-gray-100">
+      <div className="max-h-64 overflow-y-auto p-2">
+      // HERE WE ARE FILTERING OUT SYSTEM INSTRUCTIONS
+        {messages.filter((m) => m.role !== "system").map((m) => (
+          <div key={m.id} className="whitespace-pre-wrap">
+            <strong>{m.role === "user" ? "User: " : "AI: "}</strong>
+            //REST OF CODE ...
+           
+        `,
+        icon: "🎅",
+      },
+    ],
+}
+
+  
 ];
