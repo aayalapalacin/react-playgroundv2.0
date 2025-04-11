@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ABeeZee } from "next/font/google";
-
+import { signOut } from "next-auth/react"
+import { GoogleSignIn } from "@/components/googleSignIn";
 const abeezee = ABeeZee({ subsets: ["latin"], weight: "400" });
 
 export const Navigation = () => {
@@ -20,6 +21,9 @@ export const Navigation = () => {
           height={500}
         />
         <h4 className={`mt-5 text-[#00A6FB] text-xl`}>React Playground</h4>
+      </div>
+      <div>
+        <GoogleSignIn />
       </div>
       <div className="flex">
         <Link
@@ -46,6 +50,22 @@ export const Navigation = () => {
         >
           About
         </Link>
+        <Link
+          href="/api/auth/signin"
+          className={
+            pathname === "/api/auth/signin" ? "font-bold mr-4" : "text-[#00A6FB] mr-4"
+          }
+        >
+          Sign In
+        </Link>
+      <div>
+      <button
+        className="text-[#00A6FB] mr-4"
+          onClick={() => signOut()}>
+          Sign out
+      </button>
+
+      </div>
       </div>
     </nav>
   );

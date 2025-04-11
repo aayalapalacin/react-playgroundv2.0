@@ -8,6 +8,9 @@ import CategoriesView from "@/components/categoriesView";
 import { categoriesArray } from "./assets/categories";
 import Link from "next/link";
 import Image from "next/image";
+
+
+
 // import CategoryCard from "@/components/categoryCard";
 
 const icon1 =
@@ -48,7 +51,10 @@ export default function Home() {
             className="w-[60vw] h-auto"
           />
         </div>
-
+        <div>
+          <h1>Google sign in:</h1>
+            
+        </div>
         <div className="welcome-text-container text-blue-950">
           <h1 className="font-bold text-2xl">Level Up Your React Skills—</h1>
           <h1 className="font-bold text-2xl">One Tutorial at a Time</h1>
@@ -106,13 +112,14 @@ export default function Home() {
           </svg>
           <Link href={`/singleTutorial/${chosenTutorial.id}`}>
             <button
-              className={` tutorial-btn  flex shadow-react-glow items-center gap-2 px-3 py-2 rounded-md text-white bg-[#0582CA] hover:bg-reactDarkBlue transition-colors `}
+              className={`tutorial-btn flex shadow-react-glow items-center gap-2 px-3 py-2 rounded-md text-white bg-reactDarkBlue hover:bg-[#0582CA] transition-colors`}
             >
               View Tutorial
             </button>
           </Link>
         </div>
       </div>
+      
       <CategoriesView />
     </div>
   );
