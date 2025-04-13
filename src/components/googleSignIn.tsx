@@ -2,33 +2,42 @@
 
 import { useEffect } from 'react'
 import { useSession } from 'next-auth/react'
+import Link from "next/link";
+import { signOut } from "next-auth/react"
+
 
 export const GoogleSignIn = () => {
   const { data: session, status } = useSession()
 
-  useEffect(() => {
-    if (session) {
-      // Save only account/profile-like info to localStorage
-      const userData = {
-        name: session.user?.name,
-        email: session.user?.email,
-        image: session.user?.image,
-      }
-      localStorage.setItem("userProfile", JSON.stringify(userData))
-    }
-  }, [session])
+
+  
 
   if (status === "loading") return <p>Loading...</p>
 
   const userProfile = session?.user
 
   return (
-    <div>
-      {userProfile ? (
-        <h1>Hi, {userProfile.name}</h1>
-      ) : (
-        <p>No user signed in</p>
-      )}
+    <div className="google-signin-container">
+      <div className='user sign in'>
+        {userProfile ? (
+          <h1>Hi, {userProfile.name}</h1>
+        ) : (
+          <p>No user signed in</p>
+        )}
+      </div>
+      <div className='google-signin-btn'>
+        <Link
+          href="/api/auth/signin"
+        >
+          Sign In
+        </Link>
+      </div>
+      <div className='google-signout-btn'>
+       <button     
+          onClick={() => signOut()}>
+          Sign out
+      </button>
+      </div>
     </div>
   )
 }

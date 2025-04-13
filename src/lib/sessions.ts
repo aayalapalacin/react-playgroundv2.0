@@ -1,6 +1,6 @@
-// lib/session.ts
+
 import { getServerSession } from "next-auth";
-// import { authOption } from "@/app/api/auth/[...nextauth]/route";
+
 import { authOption } from "../app/api/auth/[...nextauth]/route";
 
 export async function getUserSession() {

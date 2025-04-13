@@ -14,7 +14,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" />
+      <link 
+        rel="stylesheet" 
+        href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" 
+        precedence="default"
+      />
       <body className="bg-gray-100">
         <SessionWrapper> {/* ✅ wrap content in client-side session provider */}
           <header className="bg-slate-900 text-white p-2 text-center mb-[6rem]">
