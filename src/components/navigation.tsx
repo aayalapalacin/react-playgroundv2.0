@@ -45,22 +45,7 @@ export const Navigation = () => {
         >
           About
         </Link>
-        <Link
-          href="/api/auth/signin"
-          className={
-            pathname === "/api/auth/signin" ? "font-bold mr-4" : "text-[#00A6FB] mr-4"
-          }
-        >
-          Sign In
-        </Link>
-      <div>
-      <button
-        className="text-[#00A6FB] mr-4"
-          onClick={() => signOut()}>
-          Sign out
-      </button>
-
-      </div>
+      
       </div>
     </nav>
   );
