@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ABeeZee } from "next/font/google";
-
 const abeezee = ABeeZee({ subsets: ["latin"], weight: "400" });
 
 export const Navigation = () => {
@@ -46,6 +45,7 @@ export const Navigation = () => {
         >
           About
         </Link>
+      
       </div>
     </nav>
   );

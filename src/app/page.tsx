@@ -8,6 +8,9 @@ import CategoriesView from "@/components/categoriesView";
 import { categoriesArray } from "./assets/categories";
 import Link from "next/link";
 import Image from "next/image";
+
+
+
 // import CategoryCard from "@/components/categoryCard";
 
 const icon1 =
@@ -102,13 +105,14 @@ export default function Home() {
           </svg>
           <Link href={`/singleTutorial/${chosenTutorial.id}`}>
             <button
-              className={` tutorial-btn  flex shadow-react-glow items-center gap-2 px-3 py-2 rounded-md text-white bg-reactDarkBlue hover:bg-reactDarkBlue transition-colors `}
+              className={`tutorial-btn flex shadow-react-glow items-center gap-2 px-3 py-2 rounded-md text-white bg-reactDarkBlue hover:bg-[#0582CA] transition-colors`}
             >
               View Tutorial
             </button>
           </Link>
         </div>
       </div>
+      
       <CategoriesView />
     </div>
   );

@@ -1,96 +1,238 @@
 import TestComponent  from "@/components/testComponent";
 import Chat from "@/components/chatbot";
+import { GoogleSignIn } from "@/components/googleSignIn";
 import { Tutorial } from "./types";
 
 export const tutorialsArray: Tutorial[] = [
   // Authentication
   {
-    id:1,
+    id: 1,
     category: "Authentication",
     name: "Google Sign-In: Let the API Handle the Hassle",
-    tutorialComponent: TestComponent,
+    tutorialComponent: GoogleSignIn,
     icon: "🔑",
     steps: [
       {
-        title:
-          "Step 1: Create a Google Developer Account (Because Google Owns Us)",
-        description:
-          "Go to the Google Developer Console and make a new project. Click buttons like a pro.",
-        codeSample: `
-  // In the console:
-  gcloud projects create my-awesome-project
-  // Or, if you prefer the UI, just click around until something works.
-  `,
-        icon: "🧀",
-      },
-      {
-        title: "Step 2: Enable Google Sign-In (Because OAuth is a Pain)",
-        description:
-          "Enable the 'Google Sign-In' API and grab your client ID like it's a free sample.",
-        codeSample: `
-  // In your .env file:
-  REACT_APP_GOOGLE_CLIENT_ID=your-client-id-here
-  `,
-        icon: "🥬",
-      },
-      {
-        title: "Step 3: Implement It in React (Copy-Paste and Pray)",
-        description:
-          "Use the Google OAuth package because writing your own auth system is a nightmare.",
-        codeSample: `
-  import { GoogleLogin } from 'react-google-login';
+        title: "Step 1: Set Up Google OAuth Credentials",
+        description: `
+  \`🔐 Before you write a single line of code, you’ll need to set up OAuth credentials in the Google Cloud Console.\`
   
-  const onSuccess = (response) => console.log('Logged in:', response);
-  const onFailure = (error) => console.log('Failed:', error);
+  This lets your app securely connect to Google so users can log in with their accounts.
   
-  <GoogleLogin 
-    clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-    buttonText="Login with Google"
-    onSuccess={onSuccess}
-    onFailure={onFailure}
-  />
-  `,
-        icon: "🍅",
+  **Here's what to do:**
+  
+  - Go to [https://console.cloud.google.com](https://console.cloud.google.com)
+  - **Create a new project** or select an existing one.
+  - Navigate to **"APIs & Services > OAuth consent screen"**:
+    - Choose **"External"**
+    - Fill in app details (name, support email, etc.)
+    - Add required scopes: \`openid\`, \`profile\`, \`email\`
+    - Under "Test users", add your Gmail
+    - Set the **application homepage** to your app URL (e.g., \`http://localhost:3000\`)
+  - Then go to **"Credentials"**:
+    - Click **Create Credentials > OAuth Client ID**
+    - App type: **Web**
+    - Redirect URI: \`http://localhost:3000/api/auth/callback/google\`
+  
+  \`✅ Copy the Client ID and Client Secret into your .env file.\`
+        `,
+        codeSample: `
+  // .env.local
+  
+  CLIENT_ID=your_google_client_id_here
+  CLIENT_SECRET=your_google_client_secret_here
+        `,
+        icon: "🔧",
       },
       {
-        title: "Step 4: Create a Google Developer Account (Because Google Owns Us)",
-        description: "Go to the Google Developer Console and make a new project. Click buttons like a pro.",
+        title: "Step 2: Configure NextAuth.js",
+        description: `
+  \`🛠 This is where the magic happens.\`
+  
+  You're going to tell NextAuth how to use those Google credentials. This setup ensures Google handles the secure login for you.
+  
+  - Add the Google provider with your credentials
+  - Set up a session strategy
+  - Add a basic sign-in callback to verify users
+  
+  \`📍 Location: app/api/auth/[...nextauth]/route.ts\`
+        `,
         codeSample: `
-  // In the console:
-  gcloud projects create my-awesome-project
-  // Or, if you prefer the UI, just click around until something works.
-  `,
-        icon: "🧀",
+  // app/api/auth/[...nextauth]/route.ts
+  
+  import { NextAuthOptions } from "next-auth"
+  import GoogleProvider from "next-auth/providers/google"
+  
+  export const authOption: NextAuthOptions = {
+    session: { strategy: "jwt" },
+    providers: [
+      GoogleProvider({
+        clientId: process.env.CLIENT_ID!,
+        clientSecret: process.env.CLIENT_SECRET!,
+      }),
+    ],
+    callbacks: {
+      async signIn({ profile }) {
+        if (!profile?.email) {
+          console.error("❌ No email found in profile");
+          throw new Error("No profile email");
+        }
+  
+        return true;
+      },
+    },
+  }
+        `,
+        icon: "⚙️",
       },
       {
-        title: "Step 5: Enable Google Sign-In (Because OAuth is a Pain)",
-        description: "Enable the 'Google Sign-In' API and grab your client ID like it's a free sample.",
+        title: "Step 3: Export the Auth Handler",
+        description: `
+  \`🌐 NextAuth needs to respond to incoming login/logout requests.\`
+  
+  This step makes your API route respond properly to both \`GET\` and \`POST\` requests.
+  
+  \`📍 Location: Bottom of route.ts\`
+        `,
         codeSample: `
-  // In your .env file:
-  REACT_APP_GOOGLE_CLIENT_ID=your-client-id-here
-  `,
-        icon: "🥬",
+  // app/api/auth/[...nextauth]/route.ts
+  
+  import NextAuth from "next-auth"
+  const handler = NextAuth(authOption)
+  
+  export { handler as GET, handler as POST }
+        `,
+        icon: "🔁",
       },
       {
-        title: "Step 6: Implement It in React (Copy-Paste and Pray)",
-        description: "Use the Google OAuth package because writing your own auth system is a nightmare.",
+        title: "Step 4: Wrap Your App with SessionProvider",
+        description: `
+  \`🧠 Why do we need this?\`
+  
+  The \`useSession()\` hook won’t work unless your app is wrapped in a \`SessionProvider\`. This provider gives all components access to the session context — whether someone is logged in, who they are, etc.
+  
+  **To keep your layout clean**, use a separate \`SessionWrapper\` component:
+  
+  - It goes inside your layout (\`app/layout.tsx\` or \`app/root-layout.tsx\`)
+  - It ensures your session state is available everywhere
+  - It avoids hydration errors by keeping it on the client
+  
+        `,
         codeSample: `
-  import { GoogleLogin } from 'react-google-login';
+  // components/SessionWrapper.tsx
+  "use client";
   
-  const onSuccess = (response) => console.log('Logged in:', response);
-  const onFailure = (error) => console.log('Failed:', error);
+  import { SessionProvider } from "next-auth/react";
+  import { ReactNode } from "react";
   
-  <GoogleLogin 
-    clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-    buttonText="Login with Google"
-    onSuccess={onSuccess}
-    onFailure={onFailure}
-  />
-  `,
-        icon: "🍅",
+  export default function SessionWrapper({ children }: { children: ReactNode }) {
+    return <SessionProvider>{children}</SessionProvider>;
+  }
+  
+  // app/layout.tsx or app/root-layout.tsx
+  import type { Metadata } from "next";
+  import "./styles/globals.css";
+  import { Navigation } from "@/components/navigation";
+  import SessionWrapper from "@/components/SessionWrapper"; // ✅ import this
+  
+  export const metadata: Metadata = {
+    title: "React Playground",
+    description: "Frontend tutorial library for development",
+  };
+  
+  export default function RootLayout({
+    children,
+  }: Readonly<{ children: React.ReactNode }>) {
+    return (
+      <html lang="en">
+        <link 
+          rel="stylesheet" 
+          href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" 
+          precedence="default"
+        />
+        <body className="bg-gray-100">
+          <SessionWrapper> {/* ✅ wrap content in client-side session provider */}
+            <header className="bg-slate-900 text-white p-2 text-center mb-[6rem]">
+              <Navigation />
+            </header>
+            {children}
+            <footer className="bg-slate-900 text-white p-4 text-center mt-[7rem]">
+              Made with ❤️ by {"React Playground"}
+            </footer>
+          </SessionWrapper>
+        </body>
+      </html>
+    );
+  }
+        `,
+        icon: "🧠",
+      },
+      {
+        title: "Step 5: Build the Frontend Login UI",
+        description: `
+  \`🎨 Time to bring it all to life.\`
+  
+  Create a component that shows a sign-in button, sign-out button, and user info once logged in. This uses \`useSession()\` from \`next-auth/react\`.
+  
+  **Things this UI handles:**
+  
+  - Detects if the session is loading or active
+  - Shows the user's name if signed in
+  - Renders Sign In / Sign Out buttons depending on session state
+  
+        `,
+        codeSample: `
+  'use client'
+  
+  import { useSession, signOut } from 'next-auth/react'
+  import Link from 'next/link'
+  
+  export const GoogleSignIn = () => {
+    const { data: session, status } = useSession()
+  
+    if (status === 'loading') return <p>Loading...</p>
+  
+    const user = session?.user
+  
+    return (
+      <div className="w-full max-w-md mx-auto mt-10 p-6 bg-white rounded-2xl shadow-lg space-y-6 text-center">
+        <div>
+          {user ? (
+            <h1 className="text-2xl font-semibold">Hi, {user.name}</h1>
+          ) : (
+            <p>No user signed in</p>
+          )}
+        </div>
+  
+        <div className="flex justify-center gap-4">
+          {!user ? (
+            <Link
+              href="/api/auth/signin"
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md"
+            >
+              Sign In with Google
+            </Link>
+          ) : (
+            <button
+              onClick={() => signOut()}
+              className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md"
+            >
+              Sign Out
+            </button>
+          )}
+        </div>
+      </div>
+    )
+  }
+        `,
+        icon: "🎨",
       },
     ],
-  },
+  }
+  
+  
+  
+  ,
   {
     id:2,
     category: "Authentication",
