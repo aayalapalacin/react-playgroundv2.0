@@ -9,14 +9,22 @@ export const GoogleSignIn = () => {
   if (status === 'loading') return <p className="text-gray-500">Loading...</p>
 
   const userProfile = session?.user
-
+console.log(userProfile,"user!!!!!!!!!!!!!!!!!")
   return (
     <div className="w-full max-w-md mx-auto mt-10 p-6 bg-white rounded-2xl shadow-lg space-y-6 text-center">
       <div>
         {userProfile ? (
-          <h1 className="text-2xl font-semibold text-gray-800">
-            Hi, {userProfile.name}
-          </h1>
+          <div className='flex'>
+            {
+            userProfile.image !== null ?
+              <img className='rounded-[50%]' src={userProfile.image}/>
+              :
+              ""
+            }
+            <h1 className="text-2xl font-semibold text-gray-800">
+              Hi, {userProfile.name}
+            </h1>
+          </div>
         ) : (
           <p className="text-gray-500">No user signed in</p>
         )}
