@@ -9,7 +9,7 @@ export const GoogleSignIn = () => {
   if (status === 'loading') return <p className="text-gray-500">Loading...</p>
 
   const userProfile = session?.user
-console.log(userProfile,"user!!!!!!!!!!!!!!!!!")
+  
   return (
     <div className="w-full max-w-md mx-auto mt-10 p-6 bg-white rounded-2xl shadow-lg space-y-6 text-center">
       <div>

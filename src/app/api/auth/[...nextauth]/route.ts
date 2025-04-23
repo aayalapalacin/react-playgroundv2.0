@@ -19,12 +19,12 @@ export const authOption: NextAuthOptions = {
     ],
     callbacks: {
       async signIn({ account, profile }) {
-        console.log("🔐 signIn callback triggered");
-        console.log("👉 account:", account);
-        console.log("👉 profile:", profile);
+       
+        console.log("account:", account);
+        console.log(" profile:", profile);
     
         if (!profile?.email) {
-          console.error("❌ No email found in profile");
+          console.error(" No email found in profile");
           throw new Error("No profile email");
         }
 
