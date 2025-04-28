@@ -2,6 +2,7 @@ import TestComponent  from "@/components/testComponent";
 import Chat from "@/components/chatbot";
 import { GoogleSignIn } from "@/components/googleSignIn";
 import { Tutorial } from "./types";
+import PhoneLogin from "@/components/phoneLogin";
 
 export const tutorialsArray: Tutorial[] = [
   // Authentication
@@ -234,55 +235,135 @@ export const tutorialsArray: Tutorial[] = [
   
   ,
   {
-    id:2,
+    id: 2,
     category: "Authentication",
-    name: "Facebook Login: The Other Login You Can't Escape",
-    tutorialComponent: TestComponent,
-    icon: "🔑",
+    name: "Phone SMS Sign-In: Simple 6-Digit Magic",
+    tutorialComponent: PhoneLogin, // (you can create this component)
+    icon: "📱",
     steps: [
       {
-        title:
-          "Step 1: Create a Facebook Developer Account (Another Account to Manage)",
-        description:
-          "Head to the Facebook Developers portal and create an app to get your app ID.",
-        codeSample: `
-  // In the console:
-  fb create-app my-awesome-app
-  // Or, click around the portal until your app is set up.
-  `,
-        icon: "🧀",
+        title: "Step 1: Set Up Firebase and Enable Phone Authentication",
+        description: `
+  \`🔧 First, let's enable Phone Sign-In on Firebase.\`
+  
+  Go to [Firebase Console](https://console.firebase.google.com):
+  
+  - Select your project.
+  - Go to **Build > Authentication > Sign-in Method**.
+  - Enable **Phone** as a provider.
+  - (Optional) Add test phone numbers for free testing, so you don't use real SMS credits.
+  
+  \`✅ Now Firebase is ready to send verification codes!\`
+        `,
+        codeSample: `// No code for this step — just Firebase Console setup!`,
+        icon: "📋",
       },
       {
-        title: "Step 2: Get Your Facebook App ID (Your New Best Friend)",
-        description:
-          "Grab your app ID from the Facebook developer console and store it safely.",
+        title: "Step 2: Install and Initialize Firebase SDK",
+        description: `
+  \`📦 Install the Firebase package into your Next.js app.\`
+  
+  You'll also need to configure the Firebase app with your project credentials.
+  
+  \`🛠 Install Firebase:\`
+        `,
         codeSample: `
-  // In your .env file:
-  REACT_APP_FACEBOOK_APP_ID=your-facebook-app-id
-  `,
-        icon: "🥬",
+  npm install firebase
+        `,
+        icon: "📦",
       },
       {
-        title:
-          "Step 3: Add Facebook Login to React (Because Everyone is Doing It)",
-        description: "Install the Facebook SDK and implement the login button.",
+        title: "Step 3: Create the Firebase App Config",
+        description: `
+  \`🚀 Set up Firebase connection inside your app.\`
+  
+  Create a \`/lib/firebase.js\` file to initialize your Firebase project.
+  
+  \`📍 Location: lib/firebase.js\`
+        `,
         codeSample: `
-  import { FacebookLogin } from 'react-facebook-login';
+  // lib/firebase.js
+  import { initializeApp } from "firebase/app";
   
-  const onSuccess = (response) => console.log('Logged in:', response);
-  const onFailure = (error) => console.log('Failed:', error);
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
   
-  <FacebookLogin
-    appId={process.env.REACT_APP_FACEBOOK_APP_ID}
-    fields="name,email,picture"
-    callback={onSuccess} 
-    onFailure={onFailure}
-  />
-  `,
-        icon: "🍅",
+  const app = initializeApp(firebaseConfig);
+  
+  export default app;
+        `,
+        icon: "🔧",
+      },
+      {
+        title: "Step 4: Set Up reCAPTCHA and Send SMS Code",
+        description: `
+  \`🤖 Before sending an SMS, Firebase needs to verify the user isn't a bot.\`
+  
+  Create an invisible reCAPTCHA verifier and send the code using \`signInWithPhoneNumber\`.
+  
+  \`📍 Use inside your PhoneAuth component:\`
+        `,
+        codeSample: `
+  import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+  import app from "../lib/firebase";
+  
+  const auth = getAuth(app);
+  
+  // Set up invisible reCAPTCHA
+  window.recaptchaVerifier = new RecaptchaVerifier('sign-in-button', {
+    size: 'invisible',
+    callback: (response) => {
+      // reCAPTCHA solved
+    }
+  }, auth);
+  
+  // Send SMS
+  const phoneNumber = "+1234567890"; // User's phone
+  const appVerifier = window.recaptchaVerifier;
+  
+  signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+    .then((confirmationResult) => {
+      window.confirmationResult = confirmationResult;
+      console.log("Code sent!");
+    }).catch((error) => {
+      console.error("Error sending SMS", error);
+    });
+        `,
+        icon: "📲",
+      },
+      {
+        title: "Step 5: Verify the 6-Digit Code",
+        description: `
+  \`✅ Now verify the code the user types in!\`
+  
+  Use \`confirmationResult.confirm(code)\` to complete sign-in.
+  
+  \`📍 Use inside your PhoneAuth component:\`
+        `,
+        codeSample: `
+  const code = "123456"; // User enters this
+  
+  window.confirmationResult.confirm(code)
+    .then((result) => {
+      const user = result.user;
+      console.log("User signed in:", user);
+      alert("Phone number verified!");
+    })
+    .catch((error) => {
+      console.error("Invalid verification code.", error);
+    });
+        `,
+        icon: "✅",
       },
     ],
-  },
+  }
+  ,
 
   // AI
   
