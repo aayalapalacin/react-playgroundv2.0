@@ -5,7 +5,7 @@ import * as motion from "motion/react-client";
 import { useState } from "react";
 import { Tutorial } from "@/app/assets/types";
 import { Step } from "@/app/assets/types";
-import CodeBlock from "./codeBlock";
+import { CodeBlock } from "./codeBlock";
 
 interface TransitionCardsProps {
     tutorial: Tutorial;
@@ -62,12 +62,13 @@ export default function TransitionCards({ tutorial }: TransitionCardsProps) {
                     >
                         <div className="step-description">
                             <h1 className=" step-description-title font-bold">Description:</h1>
-                            {selectedTab.description ?<CodeBlock code={selectedTab.description} />   : "No description available"}
+                    
+                            {selectedTab.description ?<CodeBlock language="javascript" code={selectedTab.description}/>   : "No description available"}
                         </div>
                        
                         <div className="step-code-sample mt-4">
                             <h1 className=" step-code-sample-title font-bold">Code Sample:</h1>
-                            {selectedTab.codeSample ?  <CodeBlock code={selectedTab.codeSample} /> : "No code sample available"}
+                            {selectedTab.codeSample ?  <CodeBlock language="javascript" code={selectedTab.codeSample} /> : "No code sample available"}
                         </div>
                     </motion.div>
                 </AnimatePresence>
