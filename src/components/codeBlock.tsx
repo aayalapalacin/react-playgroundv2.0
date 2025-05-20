@@ -1,10 +1,13 @@
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { tomorrowNight } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
+interface CodeBlockProps{
+  code :string;
+  language: string;
+}
 
-const CodeBlock = ({ code, language = "javascript" }) => (
-  <SyntaxHighlighter language={language} style={tomorrowNight}>
+export const CodeBlock = ({ code, language  }: CodeBlockProps) => (
+  <SyntaxHighlighter language={language} style={tomorrow}>
     {code}
   </SyntaxHighlighter>
 );
 
-export default CodeBlock;
