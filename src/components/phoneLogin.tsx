@@ -17,7 +17,6 @@ useEffect(() => {
       {
         size: 'invisible',
         callback: (response: any) => {
-          console.log('reCAPTCHA solved:', response);
         },
         // sitekey: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
       }
@@ -42,8 +41,6 @@ useEffect(() => {
   const handleSendCode = async () => {
     try {
       const appVerifier = window.recaptchaVerifier as RecaptchaVerifier;
-      console.log("auth",auth)
-      console.log("appVerifier",appVerifier)
       const result = await signInWithPhoneNumber(auth, phoneNumber, appVerifier);
       setConfirmationResult(result);
       console.log('Code sent successfully:', result);
