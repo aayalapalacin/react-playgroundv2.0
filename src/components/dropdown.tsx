@@ -115,7 +115,3 @@ const wrapperVariants = {
     },
   };
   
-  const actionIconVariants = {
-    open: { scale: 1, y: 0 },
-    closed: { scale: 0, y: -7 },
-  };

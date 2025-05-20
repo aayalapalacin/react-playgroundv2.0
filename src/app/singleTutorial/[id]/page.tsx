@@ -1,6 +1,5 @@
 import { tutorialsArray } from "@/app/assets/tutorials";
 import { Tutorial } from "@/app/assets/types";
-import Chat from "@/components/chatbot";
 import TransitionCards from "@/components/transitionCards";
 import React from "react";
 

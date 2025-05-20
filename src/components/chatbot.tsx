@@ -3,7 +3,7 @@
 import { useChat } from "@ai-sdk/react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import React , {useState} from 'react';
+import React  from 'react';
 
 export default function Chat() {
   

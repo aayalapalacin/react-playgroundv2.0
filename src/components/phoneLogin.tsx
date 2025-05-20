@@ -16,8 +16,6 @@ useEffect(() => {
       'recaptcha-container',
       {
         size: 'invisible',
-        callback: (response: any) => {
-        },
         // sitekey: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
       }
     );
