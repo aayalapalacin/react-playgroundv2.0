@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ABeeZee } from "next/font/google";
+import "../app/styles/navigation.css";
+
 const abeezee = ABeeZee({ subsets: ["latin"], weight: "400" });
 
 export const Navigation = () => {
@@ -18,7 +20,7 @@ export const Navigation = () => {
           width={500}
           height={500}
         />
-        <h4 className={`mt-5 text-[#00A6FB] text-xl`}>React Playground</h4>
+        <h4 className={`mt-5 text-[#00A6FB] text-xl nav-title`}>React Playground</h4>
       </div>
       <div className="flex">
         <Link
