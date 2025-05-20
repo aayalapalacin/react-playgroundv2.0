@@ -8,6 +8,7 @@ import CategoriesView from "@/components/categoriesView";
 import { categoriesArray } from "./assets/categories";
 import Link from "next/link";
 import Image from "next/image";
+import PhoneLogin from "@/components/phoneLogin";
 
 
 
@@ -51,6 +52,7 @@ export default function Home() {
         <div className="welcome-text-container">
           <h1 className="font-bold text-2xl">Level Up Your React Skills—</h1>
           <h1 className="font-bold text-2xl">One Tutorial at a Time</h1>
+          <PhoneLogin />
           <p>
             {" "}
             We are two self-taught developers on a mission to break down the
