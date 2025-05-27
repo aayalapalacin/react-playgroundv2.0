@@ -9,14 +9,15 @@ import CategoryCard from "@/components/categoryCard";
 // }
 // export default function TransitionCards({ tutorial }: TransitionCardsProps) {
 
-interface SingleCategoryProps{
-  id: string;
+interface PageProps {
+  params: {
+    id: string;
+  };
 }
 
-
-export  async function SingleCategory({ id }: SingleCategoryProps ) {
+export  function SingleCategory({ params }: PageProps ) {
   
-  const idToInt:number = parseInt(id); 
+  const idToInt:number = parseInt(params.id); 
   
   const selectedCategory: Categories = categoriesArray.filter((filterCategories)=> filterCategories.id == idToInt)[0];
 
