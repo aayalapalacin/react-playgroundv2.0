@@ -1,6 +1,5 @@
 import TestComponent  from "@/components/testComponent";
 import Chat from "@/components/chatbot";
-import { GoogleSignIn } from "@/components/googleSignIn";
 import { Tutorial } from "./types";
 import PhoneLogin from "@/components/phoneLogin";
 
@@ -10,7 +9,7 @@ export const tutorialsArray: Tutorial[] = [
     id: 1,
     category: "Authentication",
     name: "Google Sign-In: Let the API Handle the Hassle",
-    tutorialComponent: GoogleSignIn,
+    tutorialComponent: TestComponent,
     icon: "🔑",
     steps: [
       {

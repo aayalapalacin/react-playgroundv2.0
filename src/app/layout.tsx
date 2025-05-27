@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import "./styles/globals.css";
 import { Navigation } from "@/components/navigation";
-import SessionWrapper from "@/components/SessionWrapper"; 
 
 export const metadata: Metadata = {
   title: "React Playground",
@@ -20,7 +19,6 @@ export default function RootLayout({
         precedence="default"
       />
       <body className="bg-gray-100">
-        <SessionWrapper> 
           <header className="bg-slate-900 text-white p-2 text-center mb-[6rem]">
             <Navigation />
           </header>
@@ -28,7 +26,6 @@ export default function RootLayout({
           <footer className="bg-slate-900 text-white p-4 text-center mt-[7rem]">
             Made with ❤️ by {"React Playground"}
           </footer>
-        </SessionWrapper>
       </body>
     </html>
   );
