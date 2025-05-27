@@ -3,8 +3,19 @@ import { Categories } from "@/app/assets/types";
 // import TransitionCards from "@/components/transitionCards";
 import CategoryCard from "@/components/categoryCard";
 
-export default async function SingleCategory({ params }: { params: { id: string } }) {
-  const { id } = await params; 
+
+// interface TransitionCardsProps {
+//   tutorial: Tutorial;
+// }
+// export default function TransitionCards({ tutorial }: TransitionCardsProps) {
+
+interface SingleCategoryProps{
+  id: string;
+}
+
+
+export default async function SingleCategory({ id }: SingleCategoryProps ) {
+  
   const idToInt:number = parseInt(id); 
   
   const selectedCategory: Categories = categoriesArray.filter((filterCategories)=> filterCategories.id == idToInt)[0];
