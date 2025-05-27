@@ -14,7 +14,7 @@ interface SingleCategoryProps{
 }
 
 
-export default async function SingleCategory({ id }: SingleCategoryProps ) {
+export  async function SingleCategory({ id }: SingleCategoryProps ) {
   
   const idToInt:number = parseInt(id); 
   
