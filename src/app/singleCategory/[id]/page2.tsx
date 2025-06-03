@@ -2,11 +2,7 @@ import { categoriesArray } from "@/app/assets/categories";
 import CategoryCard from "@/components/categoryCard";
 import { notFound } from "next/navigation";
 
-interface PageProps {
-  params: { id: string };
-}
-
-export default async function Page({ params }: PageProps) {
+export default function Page({ params }: { params: { id: string } }) {
   const idToInt = parseInt(params.id, 10);
 
   const selectedCategory = categoriesArray.find(
@@ -16,7 +12,6 @@ export default async function Page({ params }: PageProps) {
   if (!selectedCategory) {
     notFound();
   }
-
 
   return (
     <div className="container justify-items-center m-8 mx-auto w-3/4">
