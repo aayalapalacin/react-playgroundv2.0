@@ -2,14 +2,11 @@ import { categoriesArray } from "@/app/assets/categories";
 import CategoryCard from "@/components/categoryCard";
 import { notFound } from "next/navigation";
 
-// Keep it as a plain object here
 interface PageProps {
   params: { id: string };
 }
 
-// Make the component async (Next.js expects this now)
-export default async function Page(props: Promise<PageProps>) {
-  const { params } = await props;
+export default async function Page({ params }: PageProps) {
   const idToInt = parseInt(params.id, 10);
 
   const selectedCategory = categoriesArray.find(
