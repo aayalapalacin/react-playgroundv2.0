@@ -5,8 +5,8 @@ import { notFound } from "next/navigation";
 
 import React from "react";
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const { id } = await params; 
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const idToInt:number = parseInt(id); 
   
   const selectedTutorial: Tutorial = tutorialsArray.filter((filterTutorial)=> filterTutorial.id == idToInt)[0];

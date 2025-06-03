@@ -2,8 +2,9 @@ import { categoriesArray } from "@/app/assets/categories";
 import CategoryCard from "@/components/categoryCard";
 import { notFound } from "next/navigation";
 
-export default function Page({ params }: { params: { id: string } }) {
-  const idToInt = parseInt(params.id, 10);
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const idToInt = parseInt(id, 10);
 
   const selectedCategory = categoriesArray.find(
     (category) => category.id === idToInt
@@ -12,7 +13,9 @@ export default function Page({ params }: { params: { id: string } }) {
   if (!selectedCategory) {
     notFound();
   }
-console.log("id", idToInt)
+
+  console.log("id", idToInt);
+
   return (
     <div className="container justify-items-center m-8 mx-auto w-3/4">
       <div className="singleCategoryTitle">
