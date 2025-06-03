@@ -8,8 +8,8 @@ function PhoneLogin() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [verificationCode, setVerificationCode] = useState('');
   const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult | null>(null);
-  const [statusMessage,setStatusMessage]=useState<String>("");
-  const [loggedIn, setLogginIn] = useState<Boolean>(false);
+  const [statusMessage,setStatusMessage]=useState<string>("");
+  const [loggedIn, setLogginIn] = useState<boolean>(false);
 
 useEffect(() => {
   if (typeof window !== 'undefined' && !window.recaptchaVerifier) {
