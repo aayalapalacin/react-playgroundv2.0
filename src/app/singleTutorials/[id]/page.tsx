@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 
 import React from "react";
 
-export default async function SingleTutorials({ params }: { params: { id: string } }) {
+export default async function Page({ params }: { params: { id: string } }) {
   const { id } = await params; 
   const idToInt:number = parseInt(id); 
   
