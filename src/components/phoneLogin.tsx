@@ -8,6 +8,8 @@ function PhoneLogin() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [verificationCode, setVerificationCode] = useState('');
   const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult | null>(null);
+  const [statusMessage,setStatusMessage]=useState<String>("");
+  const [loggedIn, setLogginIn] = useState<Boolean>(false);
 
 useEffect(() => {
   if (typeof window !== 'undefined' && !window.recaptchaVerifier) {
@@ -41,8 +43,10 @@ useEffect(() => {
       const appVerifier = window.recaptchaVerifier as RecaptchaVerifier;
       const result = await signInWithPhoneNumber(auth, phoneNumber, appVerifier);
       setConfirmationResult(result);
+      setStatusMessage('Code sent successfully')
       console.log('Code sent successfully:', result);
     } catch (error) {
+      setStatusMessage('Error sending verification code')
       console.error('Error sending verification code:', error);
     }
   };
@@ -52,7 +56,9 @@ useEffect(() => {
     try {
       const result = await confirmationResult.confirm(verificationCode);
       console.log('User signed in successfully:', result.user);
+      setLogginIn(true)
     } catch (error) {
+      setStatusMessage('Error verifying code')
       console.error('Error verifying code:', error);
     }
   };
@@ -77,6 +83,14 @@ useEffect(() => {
           onChange={(e) => setVerificationCode(e.target.value)}
         />
         <button onClick={handleVerifyCode}>Verify Code</button>
+      </div>
+      <div className='logged-in-status m-2'>
+        {loggedIn ? 
+        <h2>You are logged in!</h2>
+        :
+        <h2>You are not logged in</h2>  
+      }
+
       </div>
 
       <div id="recaptcha-container"></div>

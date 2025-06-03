@@ -14,7 +14,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
     notFound();
   }
 
-  console.log("id", idToInt);
+
 
   return (
     <div className="container justify-items-center m-8 mx-auto w-3/4">
