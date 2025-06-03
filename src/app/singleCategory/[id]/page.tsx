@@ -12,7 +12,7 @@ export default function Page({ params }: { params: { id: string } }) {
   if (!selectedCategory) {
     notFound();
   }
-
+console.log("id", idToInt)
   return (
     <div className="container justify-items-center m-8 mx-auto w-3/4">
       <div className="singleCategoryTitle">
