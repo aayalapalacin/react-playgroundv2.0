@@ -64,38 +64,49 @@ useEffect(() => {
   };
 
   return (
-    <div>
-      <div className="input-phone">
+    <div className="max-w-md mx-auto mt-10 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md space-y-6">
+      <h2 className="text-2xl font-bold text-center text-gray-800 dark:text-white">SMS Login</h2>
+
+      <div className="space-y-4">
         <input
           type="tel"
-          placeholder="Phone Number"
+          placeholder="Enter phone number"
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
-        <button onClick={handleSendCode}>Send Code</button>
+        <button
+          onClick={handleSendCode}
+          className="w-full py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition"
+        >
+          Send Verification Code
+        </button>
       </div>
 
-      <div className="verify-phone">
+      <div className="space-y-4">
         <input
           type="text"
-          placeholder="Verification Code"
+          placeholder="Enter verification code"
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
           value={verificationCode}
           onChange={(e) => setVerificationCode(e.target.value)}
         />
-        <button onClick={handleVerifyCode}>Verify Code</button>
+        <button
+          onClick={handleVerifyCode}
+          className="w-full py-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition"
+        >
+          Verify Code
+        </button>
       </div>
-        <span>
 
-        {statusMessage}
-        </span>
-      <div className='logged-in-status m-2'>
+      <div className="text-sm text-center text-gray-600 dark:text-gray-300">{statusMessage}</div>
 
-        {loggedIn ? 
-        <h2>You are logged in!</h2>
-        :
-        <h2>You are not logged in</h2>  
-      }
-
+      <div className="text-center">
+        {loggedIn ? (
+          <h2 className="text-green-600 font-semibold">🎉 You are logged in!</h2>
+        ) : (
+          <h2 className="text-red-600 font-semibold">🔒 You are not logged in</h2>
+        )}
       </div>
 
       <div id="recaptcha-container"></div>
