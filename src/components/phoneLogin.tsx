@@ -46,7 +46,7 @@ useEffect(() => {
       setStatusMessage('Code sent successfully')
       console.log('Code sent successfully:', result);
     } catch (error) {
-      setStatusMessage('Error sending verification code')
+      setStatusMessage(`Error sending verification code: ${error}`)
       console.error('Error sending verification code:', error);
     }
   };
@@ -58,7 +58,7 @@ useEffect(() => {
       console.log('User signed in successfully:', result.user);
       setLogginIn(true)
     } catch (error) {
-      setStatusMessage('Error verifying code')
+      setStatusMessage(`Error verifying code: ${error}`)
       console.error('Error verifying code:', error);
     }
   };
@@ -83,11 +83,11 @@ useEffect(() => {
           onChange={(e) => setVerificationCode(e.target.value)}
         />
         <button onClick={handleVerifyCode}>Verify Code</button>
+      </div>
         <span>
 
         {statusMessage}
         </span>
-      </div>
       <div className='logged-in-status m-2'>
 
         {loggedIn ? 
