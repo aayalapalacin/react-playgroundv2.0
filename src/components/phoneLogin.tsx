@@ -83,8 +83,13 @@ useEffect(() => {
           onChange={(e) => setVerificationCode(e.target.value)}
         />
         <button onClick={handleVerifyCode}>Verify Code</button>
+        <span>
+
+        {statusMessage}
+        </span>
       </div>
       <div className='logged-in-status m-2'>
+
         {loggedIn ? 
         <h2>You are logged in!</h2>
         :
