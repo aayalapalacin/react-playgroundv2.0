@@ -2,7 +2,7 @@ import { categoriesArray } from "@/app/assets/categories";
 import CategoryCard from "@/components/categoryCard";
 import { notFound } from "next/navigation";
 
-export default function Page({ params }: { params: { id: string } }) {
+export default function SingleCat({ params }: { params: { id: string } }) {
   const idToInt = parseInt(params.id, 10);
 
   const selectedCategory = categoriesArray.find(

@@ -21,7 +21,7 @@ const CategoriesView = () => {
                 }}
               >
                 <div style={{ position: "relative" }} className="h-64">
-                  <Link href={`/singleCategory/${category.id}`}>
+                  <Link href={`/singleCat/${category.id}`}>
                     <Image
                       alt={category.name}
                       src={category.icon}

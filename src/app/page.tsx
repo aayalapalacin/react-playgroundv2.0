@@ -102,7 +102,7 @@ export default function Home() {
           >
             <path d={icon3} />
           </svg>
-          <Link href={`/singleTutorial/${chosenTutorial.id}`}>
+          <Link href={`/singleTutorials/${chosenTutorial.id}`}>
             <button
               className={`tutorial-btn flex shadow-react-glow items-center gap-2 px-3 py-2 rounded-md text-white bg-reactDarkBlue hover:bg-[#0582CA] transition-colors`}
             >
